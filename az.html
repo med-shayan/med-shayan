@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>A–Z Übersicht – Medizinisches Lexikon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>A–Z Übersicht</h1>
+
+<div class="section">
+  <p>Alle medizinischen Fachbegriffe alphabetisch sortiert.</p>
+</div>
+
+<div class="section" id="az-liste">
+  <!-- Wird automatisch gefüllt -->
+</div>
+
+<p><a href="index.html">← Zurück zur Startseite</a></p>
+
+<script src="begriffe.js"></script>
+<script>
+  const container = document.getElementById("az-liste");
+
+  const sortierteBegriffe = begriffe.sort((a, b) =>
+    a.name.localeCompare(b.name, "de")
+  );
+
+  let aktuellerBuchstabe = "";
+
+  sortierteBegriffe.forEach(begriff => {
+    const ersterBuchstabe = begriff.name.charAt(0).toUpperCase();
+
+    if (ersterBuchstabe !== aktuellerBuchstabe) {
+      aktuellerBuchstabe = ersterBuchstabe;
+      const h2 = document.createElement("h2");
+      h2.textContent = aktuellerBuchstabe;
+      container.appendChild(h2);
+    }
+
+    const link = document.createElement("p");
+    link.innerHTML = `<a href="${begriff.file}">${begriff.name}</a>`;
+    container.appendChild(link);
+  });
+</script>
+
+</body>
+</html>
