@@ -34,7 +34,7 @@
 
 <div id="footer"></div>
 
-<!-- ZENTRALE SPRACHLOGIK -->
+<!-- ZENTRALE SPRACHLOGIK (KORRIGIERT) -->
 <script>
 function setLang(lang) {
   localStorage.setItem("lang", lang);
@@ -43,16 +43,31 @@ function setLang(lang) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("header.html").then(r => r.text()).then(h => {
-    document.getElementById("header").innerHTML = h;
-  });
+  let headerLoaded = false;
+  let footerLoaded = false;
 
-  fetch("footer.html").then(r => r.text()).then(f => {
-    document.getElementById("footer").innerHTML = f;
-  });
+  function initLangIfReady() {
+    if (headerLoaded && footerLoaded) {
+      const lang = localStorage.getItem("lang") || "de";
+      setLang(lang);
+    }
+  }
 
-  const lang = localStorage.getItem("lang") || "de";
-  setLang(lang);
+  fetch("header.html")
+    .then(r => r.text())
+    .then(h => {
+      document.getElementById("header").innerHTML = h;
+      headerLoaded = true;
+      initLangIfReady();
+    });
+
+  fetch("footer.html")
+    .then(r => r.text())
+    .then(f => {
+      document.getElementById("footer").innerHTML = f;
+      footerLoaded = true;
+      initLangIfReady();
+    });
 });
 </script>
 
