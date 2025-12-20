@@ -61,6 +61,16 @@ h1, h2, h3 {
   flex-direction: row-reverse;
 }
 
+/* =========================
+   ZENTRALER CONTENT-CONTAINER
+========================= */
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;      /* Abstand oben/unten + zentriert */
+  padding: 0 24px;        /* 👈 DAS ist der linke/rechte Abstand */
+}
+
 /* Sprachwahl */
 
 .lang-switch button {
