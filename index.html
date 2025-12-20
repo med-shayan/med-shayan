@@ -28,41 +28,33 @@
   برای دستیاران پزشکی، پرستاران و علاقه‌مندان به پزشکی است.
 </p>
 
-<!-- SUCHE -->
-<div class="section lang de">
-  <h3>Begriff suchen</h3>
+<!-- SUCHE (NUR EIN FELD – SEHR WICHTIG) -->
+<div class="section">
+  <h3 class="lang de">Begriff suchen</h3>
+  <h3 class="lang fa" dir="rtl">جستجوی اصطلاح</h3>
+
   <input
     type="text"
     id="search"
-    placeholder="Medizinischen Fachbegriff eingeben …"
+    placeholder="Begriff eingeben / اصطلاح را وارد کنید"
     style="width:100%; padding:10px; font-size:1em;"
   >
+
   <div id="search-results" style="margin-top:15px;"></div>
 </div>
 
-<div class="section lang fa" dir="rtl">
-  <h3>جستجوی اصطلاح</h3>
-  <input
-    type="text"
-    id="search-fa"
-    placeholder="اصطلاح پزشکی را وارد کنید…"
-    style="width:100%; padding:10px; font-size:1em;"
-  >
-  <div id="search-results" style="margin-top:15px;"></div>
-</div>
-
-<!-- BEGRIFFE -->
+<!-- A–Z -->
 <div class="section lang de">
-  <h3>Begriffe</h3>
+  <h3>Übersicht</h3>
   <ul>
-    <li><a href="az.html">A–Z Übersicht aller Begriffe</a></li>
+    <li><a href="az.html">A–Z Übersicht aller Fachbegriffe</a></li>
   </ul>
 </div>
 
 <div class="section lang fa" dir="rtl">
-  <h3>اصطلاحات</h3>
+  <h3>فهرست</h3>
   <ul>
-    <li><a href="az.html">فهرست الفبایی اصطلاحات</a></li>
+    <li><a href="az.html">فهرست الفبایی اصطلاحات پزشکی</a></li>
   </ul>
 </div>
 
@@ -70,27 +62,27 @@
 <p class="lang de"><strong>von Shayan Daneshkhah</strong></p>
 <p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانش خواه</strong></p>
 
-<!-- JAVASCRIPT -->
+<!-- SCRIPTS -->
 <script src="begriffe.js"></script>
 <script src="search.js"></script>
 
 <script>
 function setLang(lang) {
+  // Texte ein/ausblenden
   document.querySelectorAll('.lang').forEach(el => {
     el.style.display = 'none';
   });
-
   document.querySelectorAll('.' + lang).forEach(el => {
     el.style.display = 'block';
   });
 
-  // Suche auf aktuelle Sprache umstellen
+  // Sprache an Suche weitergeben
   if (typeof setSearchLang === "function") {
     setSearchLang(lang);
   }
 }
 
-// Standard
+// Standard: Deutsch
 setLang('de');
 </script>
 
