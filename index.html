@@ -28,22 +28,22 @@
   برای دستیاران پزشکی، پرستاران و علاقه‌مندان به پزشکی است.
 </p>
 
-<!-- SUCHE (NUR EIN FELD – SEHR WICHTIG) -->
+<!-- SUCHE -->
 <div class="section">
   <h3 class="lang de">Begriff suchen</h3>
   <h3 class="lang fa" dir="rtl">جستجوی اصطلاح</h3>
 
   <input
-  type="text"
-  id="search"
-  placeholder=""
-  style="width:100%; padding:10px; font-size:1em;"
-
+    type="text"
+    id="search"
+    placeholder=""
+    style="width:100%; padding:10px; font-size:1em;"
   >
 
   <div id="search-results" style="margin-top:15px;"></div>
 </div>
 
+<!-- KATEGORIEN -->
 <div class="section">
   <h3 class="lang de">Kategorien</h3>
   <h3 class="lang fa" dir="rtl">دسته‌بندی‌ها</h3>
@@ -68,18 +68,32 @@
 
 <!-- AUTOR -->
 <p class="lang de"><strong>von Shayan Daneshkhah</strong></p>
-<p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانش خواه</strong></p>
+<p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانشخواه</strong></p>
 
 <!-- SCRIPTS -->
 <script src="begriffe.js"></script>
 <script src="search.js"></script>
 
 <script>
+function renderKategorien(lang) {
+  const ul = document.getElementById("kategorien-liste");
+  if (!ul || typeof kategorien === "undefined") return;
+
+  ul.innerHTML = "";
+
+  Object.keys(kategorien).forEach(key => {
+    const li = document.createElement("li");
+    const name = kategorien[key][lang];
+    li.innerHTML = `<a href="kategorie.html?cat=${key}">${name}</a>`;
+    ul.appendChild(li);
+  });
+}
+
 function setLang(lang) {
   // Sprache speichern
   localStorage.setItem("lang", lang);
 
-  // Texte ein/ausblenden
+  // Texte umschalten
   document.querySelectorAll('.lang').forEach(el => {
     el.style.display = 'none';
   });
@@ -87,12 +101,7 @@ function setLang(lang) {
     el.style.display = 'block';
   });
 
-  // Suche informieren (falls vorhanden)
-  if (typeof setSearchLang === "function") {
-    setSearchLang(lang);
-  }
-
-  // Placeholder der Suche setzen (nur Startseite relevant)
+  // Placeholder Suche
   const searchInput = document.getElementById("search");
   if (searchInput) {
     searchInput.placeholder =
@@ -100,9 +109,17 @@ function setLang(lang) {
         ? "اصطلاح پزشکی را وارد کنید"
         : "Medizinischen Fachbegriff eingeben";
   }
+
+  // Suche informieren
+  if (typeof setSearchLang === "function") {
+    setSearchLang(lang);
+  }
+
+  // Kategorien anzeigen
+  renderKategorien(lang);
 }
 
-// Beim Laden: Sprache aus Speicher lesen
+// Beim Laden: gespeicherte Sprache verwenden
 const savedLang = localStorage.getItem("lang") || "de";
 setLang(savedLang);
 </script>
