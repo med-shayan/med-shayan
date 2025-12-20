@@ -6,66 +6,67 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- HEADER -->
 <div id="header"></div>
+
+<!-- CONTENT -->
 <div class="container">
 
-<!-- TITEL -->
-<h1 class="lang de">Medizinisches Lexikon</h1>
-<h1 class="lang fa" dir="rtl">واژه‌نامه پزشکی</h1>
+  <!-- TITEL -->
+  <h1 class="lang de">Medizinisches Lexikon</h1>
+  <h1 class="lang fa" dir="rtl">واژه‌نامه پزشکی</h1>
 
-<!-- BESCHREIBUNG -->
-<p class="lang de">
-  Diese Webseite bietet kurze, verständliche Erklärungen medizinischer Fachbegriffe
-  für MFA, Pflegekräfte und medizinisch Interessierte.
-</p>
+  <!-- BESCHREIBUNG -->
+  <p class="lang de">
+    Diese Webseite bietet kurze, verständliche Erklärungen medizinischer Fachbegriffe
+    für MFA, Pflegekräfte und medizinisch Interessierte.
+  </p>
 
-<p class="lang fa" dir="rtl">
-  این وب‌سایت شامل توضیحات کوتاه و قابل فهم اصطلاحات پزشکی
-  برای دستیاران پزشکی، پرستاران و علاقه‌مندان به پزشکی است.
-</p>
+  <p class="lang fa" dir="rtl">
+    این وب‌سایت شامل توضیحات کوتاه و قابل فهم اصطلاحات پزشکی
+    برای دستیاران پزشکی، پرستاران و علاقه‌مندان به پزشکی است.
+  </p>
 
-<!-- SUCHE -->
-<div class="section">
-  <h3 class="lang de">Begriff suchen</h3>
-  <h3 class="lang fa" dir="rtl">جستجوی اصطلاح</h3>
+  <!-- SUCHE -->
+  <div class="section search-box">
+    <h3 class="lang de">Begriff suchen</h3>
+    <h3 class="lang fa" dir="rtl">جستجوی اصطلاح</h3>
 
-  <input
-    type="text"
-    id="search"
-    placeholder=""
-    style="width:100%; padding:10px; font-size:1em;"
-  >
+    <input type="text" id="search">
+    <div id="search-results"></div>
+  </div>
 
-  <div id="search-results" style="margin-top:15px;"></div>
+  <!-- KATEGORIEN -->
+  <div class="section" id="kategorien">
+    <h3 class="lang de">Kategorien</h3>
+    <h3 class="lang fa" dir="rtl">دسته‌بندی‌ها</h3>
+    <ul id="kategorien-liste"></ul>
+  </div>
+
+  <!-- A–Z -->
+  <div class="section lang de">
+    <h3>Übersicht</h3>
+    <ul>
+      <li><a href="az.html">A–Z Übersicht aller Fachbegriffe</a></li>
+    </ul>
+  </div>
+
+  <div class="section lang fa" dir="rtl">
+    <h3>فهرست</h3>
+    <ul>
+      <li><a href="az.html">فهرست الفبایی اصطلاحات پزشکی</a></li>
+    </ul>
+  </div>
+
+  <!-- AUTOR -->
+  <p class="lang de"><strong>von Shayan Daneshkhah</strong></p>
+  <p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانش‌خواه</strong></p>
+
 </div>
 
-<!-- KATEGORIEN -->
-<div class="section" id="kategorien">
-  <h3 class="lang de">Kategorien</h3>
-  <h3 class="lang fa" dir="rtl">دسته‌بندی‌ها</h3>
-
-  <ul id="kategorien-liste"></ul>
-</div>
-
-<!-- A–Z -->
-<div class="section lang de">
-  <h3>Übersicht</h3>
-  <ul>
-    <li><a href="az.html">A–Z Übersicht aller Fachbegriffe</a></li>
-  </ul>
-</div>
-
-<div class="section lang fa" dir="rtl">
-  <h3>فهرست</h3>
-  <ul>
-    <li><a href="az.html">فهرست الفبایی اصطلاحات پزشکی</a></li>
-  </ul>
-</div>
-
-<!-- AUTOR -->
-<p class="lang de"><strong>von Shayan Daneshkhah</strong></p>
-<p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانش خواه</strong></p>
-
+<!-- FOOTER -->
+<div id="footer"></div>
 
 <!-- SCRIPTS -->
 <script src="begriffe.js"></script>
@@ -77,28 +78,19 @@ function renderKategorien(lang) {
   if (!ul || typeof kategorien === "undefined") return;
 
   ul.innerHTML = "";
-
   Object.keys(kategorien).forEach(key => {
     const li = document.createElement("li");
-    const name = kategorien[key][lang];
-    li.innerHTML = `<a href="kategorie.html?cat=${key}">${name}</a>`;
+    li.innerHTML = `<a href="kategorie.html?cat=${key}">${kategorien[key][lang]}</a>`;
     ul.appendChild(li);
   });
 }
 
 function setLang(lang) {
-  // Sprache speichern
   localStorage.setItem("lang", lang);
 
-  // Texte umschalten
-  document.querySelectorAll('.lang').forEach(el => {
-    el.style.display = 'none';
-  });
-  document.querySelectorAll('.' + lang).forEach(el => {
-    el.style.display = 'block';
-  });
+  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
 
-  // Placeholder Suche
   const searchInput = document.getElementById("search");
   if (searchInput) {
     searchInput.placeholder =
@@ -107,55 +99,34 @@ function setLang(lang) {
         : "Medizinischen Fachbegriff eingeben";
   }
 
-  // Suche informieren
   if (typeof setSearchLang === "function") {
     setSearchLang(lang);
   }
 
-  // Kategorien anzeigen
   renderKategorien(lang);
 }
-
-// Beim Laden: gespeicherte Sprache verwenden
-const savedLang = localStorage.getItem("lang") || "de";
-setLang(savedLang);
 </script>
 
 <script>
 fetch("header.html")
   .then(res => res.text())
   .then(html => {
-    const header = document.getElementById("header");
-    header.innerHTML = html;
-
-    // 🔒 Sprache SOFORT korrekt setzen
-    const lang = localStorage.getItem("lang") || "de";
-
-    header.querySelectorAll('.lang').forEach(el => {
-      el.style.display = 'none';
-    });
-    header.querySelectorAll('.' + lang).forEach(el => {
-      el.style.display = 'block';
-    });
+    document.getElementById("header").innerHTML = html;
   });
 </script>
 
 <script>
 fetch("footer.html")
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById("footer").innerHTML = data;
-
-    // Sprache nachladen (wichtig!)
-    const lang = localStorage.getItem("lang") || "de";
-    document.querySelectorAll('#footer .lang').forEach(el => {
-      el.style.display = 'none';
-    });
-    document.querySelectorAll('#footer .' + lang).forEach(el => {
-      el.style.display = 'block';
-    });
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
   });
 </script>
-<div id="footer"></div>
+
+<script>
+const savedLang = localStorage.getItem("lang") || "de";
+setLang(savedLang);
+</script>
+
 </body>
 </html>
