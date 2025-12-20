@@ -7,14 +7,20 @@
 </head>
 <body>
 
-<h1>Leukozytose</h1>
+<div style="text-align:right; margin-bottom:20px;">
+  <button onclick="setLang('de')">Deutsch</button>
+  <button onclick="setLang('fa')">فارسی</button>
+</div>
 
-<div class="section">
+<h1 class="lang de">Leukozytose</h1>
+<h1 class="lang fa" dir="rtl">لکوسیتوز</h1>
+
+<div class="section lang de">
   <h3>Definition</h3>
   <p>Leukozytose bezeichnet eine erhöhte Anzahl weißer Blutkörperchen im Blut.</p>
 </div>
 
-<div class="section">
+<div class="section lang de">
   <h3>Pathogenese / Ursachen</h3>
   <ul>
     <li>Infektionen</li>
@@ -23,7 +29,7 @@
   </ul>
 </div>
 
-<div class="section">
+<div class="section lang de">
   <h3>Typische Symptome</h3>
   <ul>
     <li>Fieber</li>
@@ -32,11 +38,42 @@
   </ul>
 </div>
 
-<div class="notice">
-  <strong>Hinweis:</strong> Die Angaben dienen der Information und ersetzen keine ärztliche Diagnostik oder Therapie.
+<div class="section lang fa" dir="rtl">
+  <h3>تعریف</h3>
+  <p>لکوسیتوز به افزایش تعداد گلبول‌های سفید خون گفته می‌شود.</p>
 </div>
 
-<p><a href="index.html">← Zurück zur Übersicht</a></p>
+<div class="section lang fa" dir="rtl">
+  <h3>علت‌ها / پاتوژنز</h3>
+  <ul>
+    <li>عفونت‌ها</li>
+    <li>التهاب</li>
+    <li>واکنش‌های استرسی</li>
+  </ul>
+</div>
+
+<div class="section lang fa" dir="rtl">
+  <h3>علائم شایع</h3>
+  <ul>
+    <li>تب</li>
+    <li>بی‌حالی</li>
+    <li>علائم عفونت</li>
+  </ul>
+</div>
+
+<div class="notice lang de"><strong>Hinweis:</strong> Kein Ersatz für ärztliche Beratung.</div>
+<div class="notice lang fa" dir="rtl"><strong>توجه:</strong> جایگزین تشخیص پزشکی نیست.</div>
+
+<p class="lang de"><a href="index.html">← Zurück zur Übersicht</a></p>
+<p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به فهرست</a></p>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll('.lang').forEach(el=>el.style.display='none');
+  document.querySelectorAll('.'+lang).forEach(el=>el.style.display='block');
+}
+setLang('de');
+</script>
 
 </body>
 </html>
