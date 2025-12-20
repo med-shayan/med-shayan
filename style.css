@@ -27,46 +27,55 @@ h1, h2, h3 {
   display: none;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* ===== HEADER ===== */
 
 .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #ffffff;
-  padding: 14px 24px;
-  border-bottom: 2px solid #e6e6e6;
+  padding: 14px 28px;
+  border-bottom: 3px solid #0b5ed7;
+}
+
+.nav-area nav {
+  display: flex;
+  gap: 24px;
 }
 
 .nav-area nav a {
-  margin-right: 20px;
+  padding: 8px 14px;
+  border-radius: 6px;
   font-weight: 600;
-  font-size: 15px;
+  background: #eef3ff;
+  color: #0b5ed7;
 }
 
-.nav-area nav[dir="rtl"] a {
-  margin-left: 20px;
-  margin-right: 0;
+.nav-area nav a:hover {
+  background: #0b5ed7;
+  color: #ffffff;
+  text-decoration: none;
 }
+
+.nav-area nav[dir="rtl"] {
+  flex-direction: row-reverse;
+}
+
+/* Sprachwahl */
 
 .lang-switch button {
-  margin-left: 8px;
-  padding: 6px 14px;
-  border: 1px solid #0b5ed7;
-  background: #fff;
+  padding: 8px 14px;
+  font-weight: 700;
+  border-radius: 8px;
+  border: 2px solid #0b5ed7;
+  background: #ffffff;
   color: #0b5ed7;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
 }
 
 .lang-switch button:hover {
   background: #0b5ed7;
-  color: #fff;
+  color: #ffffff;
 }
-
 /* =========================
    LAYOUT / CONTENT
 ========================= */
