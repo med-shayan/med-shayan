@@ -13,7 +13,6 @@
 <!-- CONTENT -->
 <div class="container">
 
-  <!-- TITEL -->
   <h1 class="lang de">Tachykardie</h1>
   <h1 class="lang fa" dir="rtl">تاکی‌کاردی</h1>
 
@@ -22,7 +21,7 @@
   <div class="section lang de">
     <h3>Definition</h3>
     <p>
-      Tachykardie bezeichnet eine Herzfrequenz von über 100 Schlägen pro Minute.
+      Tachykardie ist eine Herzfrequenz von über 100 Schlägen pro Minute.
     </p>
   </div>
 
@@ -31,14 +30,14 @@
     <ul>
       <li>Stress, Angst oder körperliche Belastung</li>
       <li>Fieber</li>
-      <li>Herzerkrankungen oder Herzrhythmusstörungen</li>
+      <li>Herzerkrankungen</li>
     </ul>
   </div>
 
   <div class="section lang de">
     <h3>Typische Symptome</h3>
     <ul>
-      <li>Herzklopfen oder Herzrasen</li>
+      <li>Herzklopfen</li>
       <li>Unruhe</li>
       <li>Atemnot</li>
     </ul>
@@ -49,70 +48,73 @@
   <div class="section lang fa" dir="rtl">
     <h3>تعریف</h3>
     <p>
-      تاکی‌کاردی به افزایش ضربان قلب به بیش از ۱۰۰ ضربه در دقیقه گفته می‌شود.
+      تاکی‌کاردی به ضربان قلب بیش از ۱۰۰ ضربه در دقیقه گفته می‌شود.
     </p>
   </div>
 
   <div class="section lang fa" dir="rtl">
     <h3>علت‌ها / پاتوژنز</h3>
     <ul>
-      <li>استرس، اضطراب یا فعالیت بدنی شدید</li>
+      <li>استرس، اضطراب یا فعالیت بدنی</li>
       <li>تب</li>
-      <li>بیماری‌ها یا اختلالات ریتم قلب</li>
+      <li>بیماری‌های قلبی</li>
     </ul>
   </div>
 
   <div class="section lang fa" dir="rtl">
     <h3>علائم شایع</h3>
     <ul>
-      <li>تپش یا تندی ضربان قلب</li>
+      <li>تپش قلب</li>
       <li>بی‌قراری</li>
       <li>تنگی نفس</li>
     </ul>
   </div>
 
   <!-- ZURÜCK -->
-  <p class="lang de">
-    <a href="index.html">← Zurück zur Startseite</a>
-  </p>
-
-  <p class="lang fa" dir="rtl">
-    <a href="index.html">← بازگشت به صفحه اصلی</a>
-  </p>
+  <p class="lang de"><a href="index.html">← Zurück zur Startseite</a></p>
+  <p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به صفحه اصلی</a></p>
 
 </div>
 
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- SPRACHLOGIK -->
+<!-- ================= SPRACHLOGIK (STABIL) ================= -->
 <script>
 function setLang(lang) {
   localStorage.setItem("lang", lang);
-  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.' + lang).forEach(el => {
-    el.style.display = 'block';
-  });
+  document.querySelectorAll(".lang").forEach(e => e.style.display = "none");
+  document.querySelectorAll(".lang." + lang).forEach(e => e.style.display = "block");
 }
-</script>
 
-<!-- HEADER LADEN -->
-<script>
+let headerLoaded = false;
+let footerLoaded = false;
+
+function initLangIfReady() {
+  if (headerLoaded && footerLoaded) {
+    const lang = localStorage.getItem("lang") || "de";
+    setLang(lang);
+  }
+}
+
+/* HEADER */
 fetch("header.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("header").innerHTML = html;
+    headerLoaded = true;
+    initLangIfReady();
   });
-</script>
 
-<!-- FOOTER LADEN -->
-<script>
+/* FOOTER */
 fetch("footer.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("footer").innerHTML = html;
+    footerLoaded = true;
+    initLangIfReady();
   });
 </script>
-  
+
 </body>
 </html>
