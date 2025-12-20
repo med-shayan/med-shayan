@@ -29,7 +29,7 @@ const begriffe = [
   {
     name_de: "Anämie",
     name_fa: "کم‌خونی",
-    search_de: "anaemie anaemie eisenmangel blutarmut",
+    search_de: "anaemie anämie eisenmangel blutarmut",
     search_fa: "کم خونی کم‌خونی",
     category: "haematologie",
     file: "anaemie.html"
