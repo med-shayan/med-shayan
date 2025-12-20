@@ -77,13 +77,22 @@ function setLang(lang) {
     el.style.display = 'block';
   });
 
+  // Placeholder der Suche korrekt setzen
+  const searchInput = document.getElementById("search");
+  if (searchInput) {
+    searchInput.placeholder =
+      lang === "fa"
+        ? "اصطلاح پزشکی را وارد کنید"
+        : "Medizinischen Fachbegriff eingeben";
+  }
+
   // Sprache an Suche weitergeben
   if (typeof setSearchLang === "function") {
     setSearchLang(lang);
   }
 }
 
-// Standard: Deutsch
+// Standard
 setLang('de');
 </script>
 
