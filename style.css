@@ -81,3 +81,29 @@ footer {
 .lang-switch button:hover {
   background-color: #ddd;
 }
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.header-container nav a {
+  margin-right: 15px;
+  font-weight: 500;
+}
+
+.header-container nav[dir="rtl"] a {
+  margin-left: 15px;
+  margin-right: 0;
+}
+
+.header-container a {
+  text-decoration: none;
+  color: #0b5ed7;
+}
+
+.header-container a:hover {
+  text-decoration: underline;
+}
