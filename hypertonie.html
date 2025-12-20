@@ -7,35 +7,73 @@
 </head>
 <body>
 
-<h1>Hypertonie</h1>
+<div style="text-align:right; margin-bottom:20px;">
+  <button onclick="setLang('de')">Deutsch</button>
+  <button onclick="setLang('fa')">فارسی</button>
+</div>
 
-<div class="section">
+<h1 class="lang de">Hypertonie</h1>
+<h1 class="lang fa" dir="rtl">فشار خون بالا</h1>
+
+<div class="section lang de">
   <h3>Definition</h3>
   <p>Hypertonie bezeichnet einen dauerhaft erhöhten arteriellen Blutdruck.</p>
 </div>
 
-<div class="section">
+<div class="section lang de">
   <h3>Pathogenese / Ursachen</h3>
   <ul>
-    <li>Primäre (essentielle) Hypertonie ohne erkennbare Ursache</li>
-    <li>Sekundäre Hypertonie bei Nieren- oder Hormonerkrankungen</li>
+    <li>Essentielle Hypertonie (ohne erkennbare Ursache)</li>
+    <li>Nierenerkrankungen</li>
+    <li>Hormonelle Störungen</li>
   </ul>
 </div>
 
-<div class="section">
+<div class="section lang de">
   <h3>Typische Symptome</h3>
   <ul>
-    <li>Oft lange symptomlos</li>
+    <li>Oft symptomlos</li>
     <li>Kopfschmerzen</li>
     <li>Schwindel</li>
   </ul>
 </div>
 
-<div class="notice">
-  <strong>Hinweis:</strong> Die Angaben dienen der Information und ersetzen keine ärztliche Diagnostik oder Therapie.
+<div class="section lang fa" dir="rtl">
+  <h3>تعریف</h3>
+  <p>فشار خون بالا به افزایش مداوم فشار خون شریانی گفته می‌شود.</p>
 </div>
 
-<p><a href="index.html">← Zurück zur Übersicht</a></p>
+<div class="section lang fa" dir="rtl">
+  <h3>علت‌ها / پاتوژنز</h3>
+  <ul>
+    <li>فشار خون اولیه بدون علت مشخص</li>
+    <li>بیماری‌های کلیوی</li>
+    <li>اختلالات هورمونی</li>
+  </ul>
+</div>
+
+<div class="section lang fa" dir="rtl">
+  <h3>علائم شایع</h3>
+  <ul>
+    <li>اغلب بدون علامت</li>
+    <li>سردرد</li>
+    <li>سرگیجه</li>
+  </ul>
+</div>
+
+<div class="notice lang de"><strong>Hinweis:</strong> Kein Ersatz für ärztliche Beratung.</div>
+<div class="notice lang fa" dir="rtl"><strong>توجه:</strong> جایگزین تشخیص پزشکی نیست.</div>
+
+<p class="lang de"><a href="index.html">← Zurück zur Übersicht</a></p>
+<p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به فهرست</a></p>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
+}
+setLang('de');
+</script>
 
 </body>
 </html>
