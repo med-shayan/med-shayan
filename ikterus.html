@@ -7,14 +7,20 @@
 </head>
 <body>
 
-<h1>Ikterus</h1>
-
-<div class="section">
-  <h3>Definition</h3>
-  <p>Ikterus ist eine Gelbfärbung von Haut und Skleren durch erhöhtes Bilirubin.</p>
+<div style="text-align:right; margin-bottom:20px;">
+  <button onclick="setLang('de')">Deutsch</button>
+  <button onclick="setLang('fa')">فارسی</button>
 </div>
 
-<div class="section">
+<h1 class="lang de">Ikterus</h1>
+<h1 class="lang fa" dir="rtl">یرقان</h1>
+
+<div class="section lang de">
+  <h3>Definition</h3>
+  <p>Ikterus ist eine Gelbfärbung von Haut und Augen durch erhöhtes Bilirubin.</p>
+</div>
+
+<div class="section lang de">
   <h3>Pathogenese / Ursachen</h3>
   <ul>
     <li>Lebererkrankungen</li>
@@ -23,7 +29,7 @@
   </ul>
 </div>
 
-<div class="section">
+<div class="section lang de">
   <h3>Typische Symptome</h3>
   <ul>
     <li>Gelbfärbung der Haut</li>
@@ -32,11 +38,42 @@
   </ul>
 </div>
 
-<div class="notice">
-  <strong>Hinweis:</strong> Die Angaben dienen der Information und ersetzen keine ärztliche Diagnostik oder Therapie.
+<div class="section lang fa" dir="rtl">
+  <h3>تعریف</h3>
+  <p>یرقان به زرد شدن پوست و سفیدی چشم‌ها به علت افزایش بیلی‌روبین گفته می‌شود.</p>
 </div>
 
-<p><a href="index.html">← Zurück zur Übersicht</a></p>
+<div class="section lang fa" dir="rtl">
+  <h3>علت‌ها / پاتوژنز</h3>
+  <ul>
+    <li>بیماری‌های کبدی</li>
+    <li>انسداد مجاری صفراوی</li>
+    <li>تخریب بیش از حد گلبول‌های قرمز</li>
+  </ul>
+</div>
+
+<div class="section lang fa" dir="rtl">
+  <h3>علائم شایع</h3>
+  <ul>
+    <li>زردی پوست</li>
+    <li>ادرار تیره</li>
+    <li>مدفوع روشن</li>
+  </ul>
+</div>
+
+<div class="notice lang de"><strong>Hinweis:</strong> Kein Ersatz für ärztliche Beratung.</div>
+<div class="notice lang fa" dir="rtl"><strong>توجه:</strong> جایگزین تشخیص پزشکی نیست.</div>
+
+<p class="lang de"><a href="index.html">← Zurück zur Übersicht</a></p>
+<p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به فهرست</a></p>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll('.lang').forEach(el=>el.style.display='none');
+  document.querySelectorAll('.'+lang).forEach(el=>el.style.display='block');
+}
+setLang('de');
+</script>
 
 </body>
 </html>
