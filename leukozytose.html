@@ -85,32 +85,38 @@
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- SPRACHLOGIK -->
+<!-- 🔒 ZENTRALE SPRACH- & LADELOGIK -->
 <script>
+let headerLoaded = false;
+let footerLoaded = false;
+
 function setLang(lang) {
   localStorage.setItem("lang", lang);
-  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.' + lang).forEach(el => {
-    el.style.display = 'block';
-  });
+  document.querySelectorAll(".lang").forEach(el => el.style.display = "none");
+  document.querySelectorAll("." + lang).forEach(el => el.style.display = "block");
 }
-</script>
 
-<!-- HEADER LADEN -->
-<script>
+function initIfReady() {
+  if (headerLoaded && footerLoaded) {
+    const lang = localStorage.getItem("lang") || "de";
+    setLang(lang);
+  }
+}
+
 fetch("header.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("header").innerHTML = html;
+  .then(r => r.text())
+  .then(h => {
+    document.getElementById("header").innerHTML = h;
+    headerLoaded = true;
+    initIfReady();
   });
-</script>
 
-<!-- FOOTER LADEN -->
-<script>
 fetch("footer.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("footer").innerHTML = html;
+  .then(r => r.text())
+  .then(f => {
+    document.getElementById("footer").innerHTML = f;
+    footerLoaded = true;
+    initIfReady();
   });
 </script>
 
