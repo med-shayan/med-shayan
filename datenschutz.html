@@ -7,68 +7,104 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <div id="header"></div>
 
-<h1 class="lang de">Datenschutzerklärung</h1>
-<h1 class="lang fa" dir="rtl">سیاست حفظ حریم خصوصی</h1>
+<!-- CONTENT -->
+<div class="container">
 
-<div class="lang de">
-  <p>
-    Der Schutz Ihrer persönlichen Daten ist uns wichtig.
-    Diese Website erhebt und verarbeitet keine personenbezogenen Daten.
+  <h1 class="lang de">Datenschutzerklärung</h1>
+  <h1 class="lang fa" dir="rtl">سیاست حفظ حریم خصوصی</h1>
+
+  <div class="lang de">
+    <p>
+      Der Schutz Ihrer persönlichen Daten ist uns wichtig.
+      Diese Website erhebt und verarbeitet keine personenbezogenen Daten.
+    </p>
+
+    <p>
+      <strong>Server-Log-Dateien</strong><br>
+      Der Hosting-Provider dieser Seiten erhebt und speichert automatisch Informationen
+      in sogenannten Server-Log-Dateien, die Ihr Browser automatisch übermittelt
+      (z. B. Browsertyp, Betriebssystem, Uhrzeit).
+    </p>
+
+    <p>
+      Diese Daten sind nicht bestimmten Personen zuordenbar und werden nicht mit anderen
+      Datenquellen zusammengeführt.
+    </p>
+
+    <p>
+      <strong>Kontaktaufnahme</strong><br>
+      Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben ausschließlich zur
+      Bearbeitung der Anfrage verwendet.
+    </p>
+  </div>
+
+  <div class="lang fa" dir="rtl">
+    <p>
+      حفظ حریم خصوصی کاربران برای ما اهمیت دارد.
+      این وب‌سایت هیچ‌گونه داده شخصی را جمع‌آوری یا ذخیره نمی‌کند.
+    </p>
+
+    <p>
+      <strong>فایل‌های ثبت سرور</strong><br>
+      ارائه‌دهنده هاست ممکن است اطلاعاتی مانند نوع مرورگر، سیستم‌عامل و زمان دسترسی
+      را به صورت خودکار ثبت کند.
+    </p>
+
+    <p>
+      این اطلاعات قابل شناسایی فردی نیستند و با منابع دیگر ترکیب نمی‌شوند.
+    </p>
+
+    <p>
+      <strong>تماس با ما</strong><br>
+      در صورت تماس از طریق ایمیل، اطلاعات شما فقط برای پاسخ‌گویی به درخواست استفاده می‌شود.
+    </p>
+  </div>
+
+  <p class="lang de">
+    <a href="index.html">← Zurück zur Startseite</a>
   </p>
 
-  <p>
-    <strong>Server-Log-Dateien</strong><br>
-    Der Hosting-Provider dieser Seiten erhebt und speichert automatisch Informationen
-    in sogenannten Server-Log-Dateien, die Ihr Browser automatisch übermittelt
-    (z. B. Browsertyp, Betriebssystem, Uhrzeit).
+  <p class="lang fa" dir="rtl">
+    <a href="index.html">← بازگشت به صفحه اصلی</a>
   </p>
 
-  <p>
-    Diese Daten sind nicht bestimmten Personen zuordenbar und werden nicht mit anderen
-    Datenquellen zusammengeführt.
-  </p>
-
-  <p>
-    <strong>Kontaktaufnahme</strong><br>
-    Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben ausschließlich zur
-    Bearbeitung der Anfrage verwendet.
-  </p>
 </div>
 
-<div class="lang fa" dir="rtl">
-  <p>
-    حفظ حریم خصوصی کاربران برای ما اهمیت دارد.
-    این وب‌سایت هیچ‌گونه داده شخصی را جمع‌آوری یا ذخیره نمی‌کند.
-  </p>
+<!-- FOOTER -->
+<div id="footer"></div>
 
-  <p>
-    <strong>فایل‌های ثبت سرور</strong><br>
-    ارائه‌دهنده هاست ممکن است اطلاعاتی مانند نوع مرورگر، سیستم‌عامل و زمان دسترسی
-    را به صورت خودکار ثبت کند.
-  </p>
-
-  <p>
-    این اطلاعات قابل شناسایی فردی نیستند و با منابع دیگر ترکیب نمی‌شوند.
-  </p>
-
-  <p>
-    <strong>تماس با ما</strong><br>
-    در صورت تماس از طریق ایمیل، اطلاعات شما فقط برای پاسخ‌گویی به درخواست استفاده می‌شود.
-  </p>
-</div>
-
-<p class="lang de"><a href="index.html">← Zurück zur Startseite</a></p>
-<p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به صفحه اصلی</a></p>
-
+<!-- SPRACHFUNKTION -->
 <script>
 function setLang(lang) {
   localStorage.setItem("lang", lang);
   document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
   document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
 }
+</script>
 
+<!-- HEADER LADEN -->
+<script>
+fetch("header.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("header").innerHTML = html;
+  });
+</script>
+
+<!-- FOOTER LADEN -->
+<script>
+fetch("footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+  });
+</script>
+
+<!-- STARTSPRACHE -->
+<script>
 const savedLang = localStorage.getItem("lang") || "de";
 setLang(savedLang);
 </script>
