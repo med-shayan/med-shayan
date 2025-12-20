@@ -7,124 +7,50 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <div id="header"></div>
 
-<!-- CONTENT -->
 <div class="container">
-
-  <!-- TITEL -->
   <h1 class="lang de">Medizinisches Lexikon</h1>
   <h1 class="lang fa" dir="rtl">واژه‌نامه پزشکی</h1>
 
-  <!-- BESCHREIBUNG -->
   <p class="lang de">
-    Diese Webseite bietet kurze, verständliche Erklärungen medizinischer Fachbegriffe
-    für MFA, Pflegekräfte und medizinisch Interessierte.
+    Kurze und verständliche Erklärungen medizinischer Fachbegriffe.
   </p>
-
   <p class="lang fa" dir="rtl">
-    این وب‌سایت شامل توضیحات کوتاه و قابل فهم اصطلاحات پزشکی
-    برای دستیاران پزشکی، پرستاران و علاقه‌مندان به پزشکی است.
+    توضیحات ساده و قابل فهم اصطلاحات پزشکی.
   </p>
 
-  <!-- SUCHE -->
-  <div class="section search-box">
-    <h3 class="lang de">Begriff suchen</h3>
-    <h3 class="lang fa" dir="rtl">جستجوی اصطلاح</h3>
+  <div class="section">
+    <h3 class="lang de">Übersicht</h3>
+    <h3 class="lang fa" dir="rtl">فهرست</h3>
 
-    <input type="text" id="search">
-    <div id="search-results"></div>
+    <a href="az.html" class="lang de">A–Z Übersicht</a>
+    <a href="az.html" class="lang fa" dir="rtl">فهرست الفبایی</a>
   </div>
 
-  <!-- KATEGORIEN -->
-  <div class="section" id="kategorien">
-    <h3 class="lang de">Kategorien</h3>
-    <h3 class="lang fa" dir="rtl">دسته‌بندی‌ها</h3>
-    <ul id="kategorien-liste"></ul>
-  </div>
-
-  <!-- A–Z -->
-  <div class="section lang de">
-    <h3>Übersicht</h3>
-    <ul>
-      <li><a href="az.html">A–Z Übersicht aller Fachbegriffe</a></li>
-    </ul>
-  </div>
-
-  <div class="section lang fa" dir="rtl">
-    <h3>فهرست</h3>
-    <ul>
-      <li><a href="az.html">فهرست الفبایی اصطلاحات پزشکی</a></li>
-    </ul>
-  </div>
-
-  <!-- AUTOR -->
   <p class="lang de"><strong>von Shayan Daneshkhah</strong></p>
   <p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانش‌خواه</strong></p>
-
 </div>
 
-<!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- SCRIPTS -->
-<script src="begriffe.js"></script>
-<script src="search.js"></script>
-
+<!-- ZENTRALE SPRACHLOGIK -->
 <script>
-function renderKategorien(lang) {
-  const ul = document.getElementById("kategorien-liste");
-  if (!ul || typeof kategorien === "undefined") return;
-
-  ul.innerHTML = "";
-  Object.keys(kategorien).forEach(key => {
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="kategorie.html?cat=${key}">${kategorien[key][lang]}</a>`;
-    ul.appendChild(li);
-  });
-}
-
 function setLang(lang) {
   localStorage.setItem("lang", lang);
-
-  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
-
-  const searchInput = document.getElementById("search");
-  if (searchInput) {
-    searchInput.placeholder =
-      lang === "fa"
-        ? "اصطلاح پزشکی را وارد کنید"
-        : "Medizinischen Fachbegriff eingeben";
-  }
-
-  if (typeof setSearchLang === "function") {
-    setSearchLang(lang);
-  }
-
-  renderKategorien(lang);
+  document.querySelectorAll(".lang").forEach(e => e.style.display = "none");
+  document.querySelectorAll(".lang." + lang).forEach(e => e.style.display = "block");
 }
-</script>
 
-<script>
-fetch("header.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("header").innerHTML = html;
-  });
-</script>
-
-<script>
-fetch("footer.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("footer").innerHTML = html;
-  });
-</script>
-
-<script>
 document.addEventListener("DOMContentLoaded", () => {
+  fetch("header.html").then(r => r.text()).then(h => {
+    document.getElementById("header").innerHTML = h;
+  });
+
+  fetch("footer.html").then(r => r.text()).then(f => {
+    document.getElementById("footer").innerHTML = f;
+  });
+
   const lang = localStorage.getItem("lang") || "de";
   setLang(lang);
 });
