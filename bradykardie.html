@@ -105,6 +105,15 @@ const savedLang = localStorage.getItem("lang") || "de";
 setLang(savedLang);
 </script>
 
+
+<script>
+fetch("header.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+  });
+</script>
+
 <script>
 fetch("footer.html")
   .then(response => response.text())
