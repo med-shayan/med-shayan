@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Datenschutz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="lang-switch">
+  <button onclick="setLang('de')">Deutsch</button>
+  <button onclick="setLang('fa')">فارسی</button>
+</div>
+
+<h1 class="lang de">Datenschutzerklärung</h1>
+<h1 class="lang fa" dir="rtl">سیاست حفظ حریم خصوصی</h1>
+
+<div class="lang de">
+  <p>
+    Der Schutz Ihrer persönlichen Daten ist uns wichtig.
+    Diese Website erhebt und verarbeitet keine personenbezogenen Daten.
+  </p>
+
+  <p>
+    <strong>Server-Log-Dateien</strong><br>
+    Der Hosting-Provider dieser Seiten erhebt und speichert automatisch Informationen
+    in sogenannten Server-Log-Dateien, die Ihr Browser automatisch übermittelt
+    (z. B. Browsertyp, Betriebssystem, Uhrzeit).
+  </p>
+
+  <p>
+    Diese Daten sind nicht bestimmten Personen zuordenbar und werden nicht mit anderen
+    Datenquellen zusammengeführt.
+  </p>
+
+  <p>
+    <strong>Kontaktaufnahme</strong><br>
+    Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben ausschließlich zur
+    Bearbeitung der Anfrage verwendet.
+  </p>
+</div>
+
+<div class="lang fa" dir="rtl">
+  <p>
+    حفظ حریم خصوصی کاربران برای ما اهمیت دارد.
+    این وب‌سایت هیچ‌گونه داده شخصی را جمع‌آوری یا ذخیره نمی‌کند.
+  </p>
+
+  <p>
+    <strong>فایل‌های ثبت سرور</strong><br>
+    ارائه‌دهنده هاست ممکن است اطلاعاتی مانند نوع مرورگر، سیستم‌عامل و زمان دسترسی
+    را به صورت خودکار ثبت کند.
+  </p>
+
+  <p>
+    این اطلاعات قابل شناسایی فردی نیستند و با منابع دیگر ترکیب نمی‌شوند.
+  </p>
+
+  <p>
+    <strong>تماس با ما</strong><br>
+    در صورت تماس از طریق ایمیل، اطلاعات شما فقط برای پاسخ‌گویی به درخواست استفاده می‌شود.
+  </p>
+</div>
+
+<p class="lang de"><a href="index.html">← Zurück zur Startseite</a></p>
+<p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به صفحه اصلی</a></p>
+
+<script>
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
+}
+
+const savedLang = localStorage.getItem("lang") || "de";
+setLang(savedLang);
+</script>
+
+</body>
+</html>
