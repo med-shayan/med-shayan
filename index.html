@@ -7,15 +7,19 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <div id="header"></div>
 
+<!-- CONTENT -->
 <div class="container">
+
   <h1 class="lang de">Medizinisches Lexikon</h1>
   <h1 class="lang fa" dir="rtl">واژه‌نامه پزشکی</h1>
 
   <p class="lang de">
     Kurze und verständliche Erklärungen medizinischer Fachbegriffe.
   </p>
+
   <p class="lang fa" dir="rtl">
     توضیحات ساده و قابل فهم اصطلاحات پزشکی.
   </p>
@@ -24,51 +28,56 @@
     <h3 class="lang de">Übersicht</h3>
     <h3 class="lang fa" dir="rtl">فهرست</h3>
 
-    <a href="az.html" class="lang de">A–Z Übersicht</a>
-    <a href="az.html" class="lang fa" dir="rtl">فهرست الفبایی</a>
+    <p class="lang de">
+      <a href="az.html">A–Z Übersicht</a>
+    </p>
+
+    <p class="lang fa" dir="rtl">
+      <a href="az.html">فهرست الفبایی</a>
+    </p>
   </div>
 
   <p class="lang de"><strong>von Shayan Daneshkhah</strong></p>
   <p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانش‌خواه</strong></p>
+
 </div>
 
+<!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- ZENTRALE SPRACHLOGIK (KORRIGIERT) -->
+<!-- 🔒 ZENTRALE, STABILE SPRACH- & LADELOGIK -->
 <script>
+let headerLoaded = false;
+let footerLoaded = false;
+
 function setLang(lang) {
   localStorage.setItem("lang", lang);
-  document.querySelectorAll(".lang").forEach(e => e.style.display = "none");
-  document.querySelectorAll(".lang." + lang).forEach(e => e.style.display = "block");
+  document.querySelectorAll(".lang").forEach(el => el.style.display = "none");
+  document.querySelectorAll("." + lang).forEach(el => el.style.display = "block");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  let headerLoaded = false;
-  let footerLoaded = false;
-
-  function initLangIfReady() {
-    if (headerLoaded && footerLoaded) {
-      const lang = localStorage.getItem("lang") || "de";
-      setLang(lang);
-    }
+function initIfReady() {
+  if (headerLoaded && footerLoaded) {
+    const lang = localStorage.getItem("lang") || "de";
+    setLang(lang);
   }
+}
 
-  fetch("header.html")
-    .then(r => r.text())
-    .then(h => {
-      document.getElementById("header").innerHTML = h;
-      headerLoaded = true;
-      initLangIfReady();
-    });
+fetch("header.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("header").innerHTML = html;
+    headerLoaded = true;
+    initIfReady();
+  });
 
-  fetch("footer.html")
-    .then(r => r.text())
-    .then(f => {
-      document.getElementById("footer").innerHTML = f;
-      footerLoaded = true;
-      initLangIfReady();
-    });
-});
+fetch("footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+    footerLoaded = true;
+    initIfReady();
+  });
 </script>
 
 </body>
