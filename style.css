@@ -1,12 +1,8 @@
-/* =========================
-   GLOBAL
-========================= */
-
+/* GLOBAL */
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f5f7fa;
   margin: 0;
-  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fa;
   color: #222;
 }
 
@@ -14,197 +10,80 @@ a {
   color: #0b5ed7;
   text-decoration: none;
 }
+a:hover { text-decoration: underline; }
 
-a:hover {
-  text-decoration: underline;
-}
+h1, h2, h3 { color: #0b5ed7; }
 
-h1, h2, h3 {
-  color: #0b5ed7;
-}
-
-/* =========================
-   HEADER & NAVIGATION
-========================= */
-
+/* HEADER */
 .main-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ffffff;
-  padding: 14px 28px;
+  background: #fff;
   border-bottom: 3px solid #0b5ed7;
 }
 
-.nav-area {
+.main-header .container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
 }
 
-.nav-area .lang {
-  display: none;
-  gap: 24px;
+.nav-area nav {
+  display: flex;
+  gap: 16px;
 }
 
-.nav-area .lang a {
+.nav-area a {
+  background: #eef3ff;
   padding: 8px 14px;
   border-radius: 6px;
   font-weight: 600;
-  background: #eef3ff;
-  color: #0b5ed7;
 }
-
-.nav-area .lang a:hover {
-  background: #0b5ed7;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.nav-area .lang[dir="rtl"] {
-  flex-direction: row-reverse;
-}
-
-/* Sprachumschalter */
 
 .lang-switch button {
-  padding: 8px 14px;
-  font-weight: 700;
-  border-radius: 8px;
   border: 2px solid #0b5ed7;
-  background: #ffffff;
+  background: #fff;
   color: #0b5ed7;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
   cursor: pointer;
 }
-
 .lang-switch button:hover {
   background: #0b5ed7;
-  color: #ffffff;
+  color: #fff;
 }
 
-/* =========================
-   ZENTRALER CONTENT-CONTAINER
-========================= */
-
+/* CONTAINER */
 .container {
   max-width: 1000px;
   margin: 40px auto;
   padding: 0 24px;
 }
 
-/* =========================
-   CONTENT / SECTIONS
-========================= */
-
+/* SECTIONS */
 .section {
-  background: #ffffff;
-  border-radius: 10px;
+  background: #fff;
   padding: 20px 24px;
+  border-radius: 10px;
   margin-bottom: 25px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-.section h3 {
-  margin-top: 0;
+/* FOOTER */
+#footer {
+  background: #fff;
+  border-top: 2px solid #e6e6e6;
+  margin-top: 40px;
 }
 
-/* =========================
-   SEARCH
-========================= */
-
-.search-box input {
-  width: 100%;
-  padding: 12px;
-  font-size: 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-/* =========================
-   LISTS
-========================= */
-
-ul {
-  padding-left: 20px;
-}
-
-[dir="rtl"] ul {
-  padding-right: 20px;
-  padding-left: 0;
-}
-
-/* =========================
-   A–Z LIST
-========================= */
-
-.az-list a {
-  display: inline-block;
-  margin: 6px 10px 6px 0;
-  padding: 6px 10px;
-  background: #eef3ff;
-  border-radius: 6px;
-  font-weight: 500;
-}
-
-.az-list a:hover {
-  background: #0b5ed7;
-  color: #fff;
-}
-
-/* =========================
-   RTL SUPPORT
-========================= */
-
-[dir="rtl"] {
-  text-align: right;
-  direction: rtl;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.site-footer {
-  background: #ffffff;
-  padding: 20px 0;
+#footer .container {
+  padding: 20px 24px;
   font-size: 0.9em;
   color: #555;
-  border-top: 2px solid #e6e6e6;
 }
 
-.footer-separator {
-  border: none;
-  border-top: 2px solid #e6e6e6;
-  margin-bottom: 20px;
-}
-
-.footer-content {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.footer-links a {
-  margin-right: 10px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 600px) {
-  .main-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-area {
-    margin-bottom: 10px;
-  }
-
-  .nav-area .lang a {
-    margin-right: 12px;
-  }
-
-  .container {
-    padding: 0 16px;
-  }
+/* RTL */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
 }
