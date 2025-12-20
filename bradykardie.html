@@ -7,23 +7,29 @@
 </head>
 <body>
 
-<h1>Bradykardie</h1>
+<div style="text-align:right; margin-bottom:20px;">
+  <button onclick="setLang('de')">Deutsch</button>
+  <button onclick="setLang('fa')">فارسی</button>
+</div>
 
-<div class="section">
+<h1 class="lang de">Bradykardie</h1>
+<h1 class="lang fa" dir="rtl">برادی‌کاردی</h1>
+
+<div class="section lang de">
   <h3>Definition</h3>
   <p>Bradykardie bezeichnet eine Herzfrequenz von unter 60 Schlägen pro Minute.</p>
 </div>
 
-<div class="section">
+<div class="section lang de">
   <h3>Pathogenese / Ursachen</h3>
   <ul>
     <li>Erhöhte vagale Aktivität (z. B. bei Sportlern)</li>
-    <li>Erkrankungen des kardialen Reizleitungssystems</li>
+    <li>Erkrankungen des Reizleitungssystems</li>
     <li>Medikamente (z. B. Betablocker)</li>
   </ul>
 </div>
 
-<div class="section">
+<div class="section lang de">
   <h3>Typische Symptome</h3>
   <ul>
     <li>Müdigkeit</li>
@@ -32,11 +38,47 @@
   </ul>
 </div>
 
-<div class="notice">
-  <strong>Hinweis:</strong> Die Angaben dienen der Information und ersetzen keine ärztliche Diagnostik oder Therapie.
+<div class="section lang fa" dir="rtl">
+  <h3>تعریف</h3>
+  <p>برادی‌کاردی به ضربان قلب کمتر از ۶۰ ضربه در دقیقه گفته می‌شود.</p>
 </div>
 
-<p><a href="index.html">← Zurück zur Übersicht</a></p>
+<div class="section lang fa" dir="rtl">
+  <h3>علت‌ها / پاتوژنز</h3>
+  <ul>
+    <li>فعالیت بیش از حد عصب واگ</li>
+    <li>اختلالات سیستم هدایت قلب</li>
+    <li>مصرف برخی داروها مانند بتابلوکرها</li>
+  </ul>
+</div>
+
+<div class="section lang fa" dir="rtl">
+  <h3>علائم شایع</h3>
+  <ul>
+    <li>خستگی</li>
+    <li>سرگیجه</li>
+    <li>غش کردن</li>
+  </ul>
+</div>
+
+<div class="notice lang de">
+  <strong>Hinweis:</strong> Die Angaben dienen der Information und ersetzen keine ärztliche Beratung.
+</div>
+
+<div class="notice lang fa" dir="rtl">
+  <strong>توجه:</strong> این اطلاعات جایگزین تشخیص یا درمان پزشکی نیست.
+</div>
+
+<p class="lang de"><a href="index.html">← Zurück zur Übersicht</a></p>
+<p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به فهرست</a></p>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
+}
+setLang('de');
+</script>
 
 </body>
 </html>
