@@ -6,53 +6,66 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div style="text-align:right; margin-bottom:20px;">
+
+<!-- Sprachumschalter -->
+<div style="text-align:right; margin-bottom:20px;">
   <button onclick="setLang('de')">Deutsch</button>
   <button onclick="setLang('fa')">فارسی</button>
 </div>
 
-<h1>Anämie</h1>
+<h1>Anämie / کم‌خونی</h1>
+
+<!-- ================= DEUTSCH ================= -->
 
 <div class="section lang de">
   <h3>Definition</h3>
   <p>
-    Anämie bezeichnet eine Verminderung des Hämoglobingehalts im Blut, wodurch der
-    Sauerstofftransport im Körper eingeschränkt ist.
-  </p>
-<div class="section lang fa" dir="rtl">
-  <h3>تعریف</h3>
-  <p>
-    کم‌خونی به وضعیتی گفته می‌شود که میزان هموگلوبین خون کمتر از حد طبیعی باشد
-    و در نتیجه اکسیژن‌رسانی به بافت‌های بدن کاهش یابد.
+    Anämie bezeichnet eine Verminderung des Hämoglobingehalts im Blut,
+    wodurch der Sauerstofftransport im Körper eingeschränkt ist.
   </p>
 </div>
 
 <div class="section lang de">
-  <h3>Häufige Ursachen</h3>
+  <h3>Pathogenese / Ursachen</h3>
   <ul>
     <li>Eisenmangel</li>
     <li>Akuter oder chronischer Blutverlust</li>
     <li>Vitamin-B12- oder Folsäuremangel</li>
-  </ul>
-</div>
-<div class="section lang fa" dir="rtl">
-  <h3>علت‌ها / پاتوژنز شایع</h3>
-  <ul>
-    <li>کمبود آهن (شایع‌ترین علت)</li>
-    <li>از دست دادن خون (مثلاً قاعدگی شدید یا خونریزی)</li>
-    <li>کمبود ویتامین B12 یا اسید فولیک</li>
-    <li>اختلال در تولید گلبول‌های قرمز</li>
+    <li>Störungen der Blutbildung</li>
   </ul>
 </div>
 
 <div class="section lang de">
   <h3>Typische Symptome</h3>
   <ul>
-    <li>Müdigkeit und Leistungsabfall</li>
-    <li>Blasse Haut und Schleimhäute</li>
-    <li>Schwindel, Kopfschmerzen</li>
+    <li>Müdigkeit</li>
+    <li>Blässe der Haut und Schleimhäute</li>
+    <li>Leistungsabfall</li>
+    <li>Schwindel</li>
+    <li>Kurzatmigkeit bei Belastung</li>
   </ul>
 </div>
+
+<!-- ================= FARSI ================= -->
+
+<div class="section lang fa" dir="rtl">
+  <h3>تعریف</h3>
+  <p>
+    کم‌خونی به حالتی گفته می‌شود که میزان هموگلوبین خون کمتر از حد طبیعی باشد
+    و در نتیجه اکسیژن‌رسانی به بافت‌های بدن کاهش پیدا کند.
+  </p>
+</div>
+
+<div class="section lang fa" dir="rtl">
+  <h3>علت‌ها / پاتوژنز شایع</h3>
+  <ul>
+    <li>کمبود آهن (شایع‌ترین علت)</li>
+    <li>از دست دادن خون (مانند خونریزی یا قاعدگی شدید)</li>
+    <li>کمبود ویتامین B12 یا اسید فولیک</li>
+    <li>اختلال در تولید گلبول‌های قرمز</li>
+  </ul>
+</div>
+
 <div class="section lang fa" dir="rtl">
   <h3>علائم شایع</h3>
   <ul>
@@ -64,13 +77,19 @@
   </ul>
 </div>
 
-<div class="notice">
-  <strong>Hinweis:</strong> Die Angaben dienen der Information und ersetzen keine
-  ärztliche Diagnostik oder Therapie.
+<!-- Hinweis -->
+<div class="notice lang de">
+  <strong>Hinweis:</strong> Die Angaben dienen der Information und ersetzen keine ärztliche Diagnostik oder Therapie.
+</div>
+
+<div class="notice lang fa" dir="rtl">
+  <strong>توجه:</strong> این اطلاعات صرفاً جهت آگاهی است و جایگزین تشخیص یا درمان پزشکی نمی‌باشد.
 </div>
 
 <p><a href="index.html">← Zurück zur Übersicht</a></p>
-<<script>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
 function setLang(lang) {
   document.querySelectorAll('.lang').forEach(el => {
     el.style.display = 'none';
@@ -81,7 +100,9 @@ function setLang(lang) {
   });
 }
 
+// Standard: Deutsch anzeigen
 setLang('de');
 </script>
+
 </body>
 </html>
