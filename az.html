@@ -21,6 +21,7 @@
 <p class="lang de">
   Alle medizinischen Fachbegriffe alphabetisch sortiert.
 </p>
+
 <p class="lang fa" dir="rtl">
   تمام اصطلاحات پزشکی به ترتیب حروف الفبا مرتب شده‌اند.
 </p>
@@ -32,16 +33,21 @@
 <p class="lang de">
   <a href="index.html">← Zurück zur Startseite</a>
 </p>
+
 <p class="lang fa" dir="rtl">
   <a href="index.html">← بازگشت به صفحه اصلی</a>
 </p>
 
-<!-- SCRIPTS -->
+<!-- BEGRIFFE -->
 <script src="begriffe.js"></script>
 
+<!-- LOGIK -->
 <script>
 function setLang(lang) {
-  // Sprache umschalten
+  // Sprache speichern
+  localStorage.setItem("lang", lang);
+
+  // Texte ein/ausblenden
   document.querySelectorAll('.lang').forEach(el => {
     el.style.display = 'none';
   });
@@ -49,7 +55,7 @@ function setLang(lang) {
     el.style.display = 'block';
   });
 
-  // Liste neu rendern
+  // Liste neu aufbauen
   renderAZ(lang);
 }
 
@@ -86,8 +92,9 @@ function renderAZ(lang) {
   });
 }
 
-// Standard: Deutsch
-setLang('de');
+// Beim Laden: gespeicherte Sprache nutzen
+const savedLang = localStorage.getItem("lang") || "de";
+setLang(savedLang);
 </script>
 
 </body>
