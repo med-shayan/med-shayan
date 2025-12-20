@@ -7,42 +7,59 @@
 </head>
 <body>
 
-<h1>A–Z Übersicht</h1>
-
-<div class="section">
-  <p>Alle medizinischen Fachbegriffe alphabetisch sortiert.</p>
+<div class="lang-switch">
+  <button onclick="setLang('de')">Deutsch</button>
+  <button onclick="setLang('fa')">فارسی</button>
 </div>
 
-<div class="section" id="az-liste">
-  <!-- Wird automatisch gefüllt -->
-</div>
+<h1 class="lang de">A–Z Übersicht</h1>
+<h1 class="lang fa" dir="rtl">فهرست الفبایی</h1>
 
-<p><a href="index.html">← Zurück zur Startseite</a></p>
+<p class="lang de">Alle medizinischen Fachbegriffe alphabetisch sortiert.</p>
+<p class="lang fa" dir="rtl">تمام اصطلاحات پزشکی به ترتیب حروف الفبا.</p>
+
+<div id="az-liste"></div>
+
+<p class="lang de"><a href="index.html">← Zurück zur Startseite</a></p>
+<p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به صفحه اصلی</a></p>
 
 <script src="begriffe.js"></script>
-<script>
-  const container = document.getElementById("az-liste");
 
-  const sortierteBegriffe = begriffe.sort((a, b) =>
-    a.name.localeCompare(b.name, "de")
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
+  renderAZ(lang);
+}
+
+function renderAZ(lang) {
+  const container = document.getElementById("az-liste");
+  container.innerHTML = "";
+
+  const sorted = begriffe.sort((a, b) =>
+    a.name_de.localeCompare(b.name_de, "de")
   );
 
-  let aktuellerBuchstabe = "";
+  let currentLetter = "";
 
-  sortierteBegriffe.forEach(begriff => {
-    const ersterBuchstabe = begriff.name.charAt(0).toUpperCase();
+  sorted.forEach(b => {
+    const name = lang === "fa" ? b.name_fa : b.name_de;
+    const letter = name.charAt(0).toUpperCase();
 
-    if (ersterBuchstabe !== aktuellerBuchstabe) {
-      aktuellerBuchstabe = ersterBuchstabe;
+    if (letter !== currentLetter) {
+      currentLetter = letter;
       const h2 = document.createElement("h2");
-      h2.textContent = aktuellerBuchstabe;
+      h2.textContent = letter;
       container.appendChild(h2);
     }
 
-    const link = document.createElement("p");
-    link.innerHTML = `<a href="${begriff.file}">${begriff.name}</a>`;
-    container.appendChild(link);
+    const p = document.createElement("p");
+    p.innerHTML = `<a href="${b.file}">${name}</a>`;
+    container.appendChild(p);
   });
+}
+
+setLang('de');
 </script>
 
 </body>
