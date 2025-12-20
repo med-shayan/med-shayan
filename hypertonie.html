@@ -21,9 +21,7 @@
 
   <div class="section lang de">
     <h3>Definition</h3>
-    <p>
-      Hypertonie bezeichnet einen dauerhaft erhöhten arteriellen Blutdruck.
-    </p>
+    <p>Hypertonie bezeichnet einen dauerhaft erhöhten arteriellen Blutdruck.</p>
   </div>
 
   <div class="section lang de">
@@ -48,9 +46,7 @@
 
   <div class="section lang fa" dir="rtl">
     <h3>تعریف</h3>
-    <p>
-      فشار خون بالا به افزایش مداوم فشار خون شریانی گفته می‌شود.
-    </p>
+    <p>فشار خون بالا به افزایش مداوم فشار خون شریانی گفته می‌شود.</p>
   </div>
 
   <div class="section lang fa" dir="rtl">
@@ -72,43 +68,53 @@
   </div>
 
   <!-- ZURÜCK -->
-  <p class="lang de">
-    <a href="index.html">← Zurück zur Startseite</a>
-  </p>
-
-  <p class="lang fa" dir="rtl">
-    <a href="index.html">← بازگشت به صفحه اصلی</a>
-  </p>
+  <p class="lang de"><a href="index.html">← Zurück zur Startseite</a></p>
+  <p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به صفحه اصلی</a></p>
 
 </div>
 
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- SPRACHLOGIK -->
+<!-- 🔒 STABILE SPRACH- & LADELOGIK -->
 <script>
+let headerLoaded = false;
+let footerLoaded = false;
+
 function setLang(lang) {
   localStorage.setItem("lang", lang);
-  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
+  document.querySelectorAll(".lang").forEach(el => el.style.display = "none");
+  document.querySelectorAll("." + lang).forEach(el => el.style.display = "block");
 }
-</script>
 
-<!-- HEADER LADEN -->
-<script>
+function initIfReady() {
+  if (headerLoaded && footerLoaded) {
+    const lang = localStorage.getItem("lang") || "de";
+    setLang(lang);
+
+    // Sprachbuttons aktivieren
+    document.querySelectorAll(".lang-switch button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        setLang(btn.dataset.lang);
+      });
+    });
+  }
+}
+
 fetch("header.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("header").innerHTML = html;
+  .then(r => r.text())
+  .then(h => {
+    document.getElementById("header").innerHTML = h;
+    headerLoaded = true;
+    initIfReady();
   });
-</script>
 
-<!-- FOOTER LADEN -->
-<script>
 fetch("footer.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("footer").innerHTML = html;
+  .then(r => r.text())
+  .then(f => {
+    document.getElementById("footer").innerHTML = f;
+    footerLoaded = true;
+    initIfReady();
   });
 </script>
 
