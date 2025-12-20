@@ -69,10 +69,35 @@
 
 <script>
 function setLang(lang) {
-  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
+  // Sprache speichern
+  localStorage.setItem("lang", lang);
+
+  // Texte ein/ausblenden
+  document.querySelectorAll('.lang').forEach(el => {
+    el.style.display = 'none';
+  });
+  document.querySelectorAll('.' + lang).forEach(el => {
+    el.style.display = 'block';
+  });
+
+  // Suche informieren (falls vorhanden)
+  if (typeof setSearchLang === "function") {
+    setSearchLang(lang);
+  }
+
+  // Placeholder der Suche setzen (nur Startseite relevant)
+  const searchInput = document.getElementById("search");
+  if (searchInput) {
+    searchInput.placeholder =
+      lang === "fa"
+        ? "اصطلاح پزشکی را وارد کنید"
+        : "Medizinischen Fachbegriff eingeben";
+  }
 }
-setLang('de');
+
+// Beim Laden: Sprache aus Speicher lesen
+const savedLang = localStorage.getItem("lang") || "de";
+setLang(savedLang);
 </script>
 
 </body>
