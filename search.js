@@ -8,18 +8,21 @@ const results = document.getElementById("search-results");
 ========================= */
 
 function normalizeDe(text) {
-  return text.toLowerCase()
+  return text
+    .toLowerCase()
     .replace(/ä/g, "ae")
     .replace(/ö/g, "oe")
     .replace(/ü/g, "ue")
-    .replace(/ß/g, "ss");
+    .replace(/ß/g, "ss")
+    .trim();
 }
 
 function normalizeFa(text) {
   return text
     .replace(/ي/g, "ی")
     .replace(/ك/g, "ک")
-    .replace(/\u200c/g, "") // Halb-Leerzeichen entfernen
+    .replace(/\u200c/g, "")   // Halb-Leerzeichen entfernen
+    .replace(/\s+/g, "")     // ALLE Leerzeichen entfernen
     .trim();
 }
 
@@ -28,6 +31,8 @@ function normalizeFa(text) {
 ========================= */
 
 function search(value) {
+  if (!results) return;
+
   results.innerHTML = "";
   if (!value) return;
 
@@ -37,7 +42,7 @@ function search(value) {
 
   begriffe.forEach(b => {
     const displayText = currentLang === "fa" ? b.name_fa : b.name_de;
-    const searchText = currentLang === "fa" ? b.search_fa : b.search_de;
+    const searchText  = currentLang === "fa" ? b.search_fa : b.search_de;
 
     if (!displayText || !searchText) return;
 
@@ -63,7 +68,18 @@ if (searchInput && results) {
   });
 }
 
+/* =========================
+   SPRACHWECHSEL
+========================= */
+
 function setSearchLang(lang) {
   currentLang = lang;
-  results.innerHTML = "";
+
+  // Ergebnisse immer leeren
+  if (results) results.innerHTML = "";
+
+  // Suche neu ausführen, falls Text vorhanden
+  if (searchInput && searchInput.value) {
+    search(searchInput.value);
+  }
 }
