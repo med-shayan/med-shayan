@@ -1,22 +1,39 @@
-/* GLOBAL */
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: #f5f7fa;
   color: #222;
+  line-height: 1.6;
 }
 
 a {
   color: #0b5ed7;
   text-decoration: none;
 }
-a:hover { text-decoration: underline; }
 
-h1, h2, h3 { color: #0b5ed7; }
+a:hover {
+  text-decoration: underline;
+}
 
-/* HEADER */
+h1, h2, h3 {
+  color: #0b5ed7;
+  margin-top: 0;
+}
+
+/* =========================
+   HEADER
+========================= */
+
 .main-header {
-  background: #fff;
+  background: #ffffff;
   border-bottom: 3px solid #0b5ed7;
 }
 
@@ -32,6 +49,10 @@ h1, h2, h3 { color: #0b5ed7; }
   gap: 16px;
 }
 
+.nav-area nav[dir="rtl"] {
+  flex-direction: row-reverse;
+}
+
 .nav-area a {
   background: #eef3ff;
   padding: 8px 14px;
@@ -39,41 +60,99 @@ h1, h2, h3 { color: #0b5ed7; }
   font-weight: 600;
 }
 
+.nav-area a:hover {
+  background: #0b5ed7;
+  color: #fff;
+  text-decoration: none;
+}
+
 .lang-switch button {
   border: 2px solid #0b5ed7;
-  background: #fff;
+  background: #ffffff;
   color: #0b5ed7;
   font-weight: 700;
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
 }
+
 .lang-switch button:hover {
   background: #0b5ed7;
-  color: #fff;
+  color: #ffffff;
 }
 
-/* CONTAINER */
+/* =========================
+   CONTAINER
+========================= */
+
 .container {
   max-width: 1000px;
   margin: 40px auto;
   padding: 0 24px;
 }
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
+
 .section {
-  background: #fff;
+  background: #ffffff;
   padding: 20px 24px;
   border-radius: 10px;
   margin-bottom: 25px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-/* FOOTER */
+/* =========================
+   TEXT & LISTS
+========================= */
+
+p {
+  margin: 0 0 14px 0;
+}
+
+ul {
+  padding-left: 20px;
+  margin: 10px 0 0 0;
+}
+
+ul li {
+  margin-bottom: 6px;
+}
+
+/* =========================
+   A–Z & KATEGORIEN
+========================= */
+
+.az-list p,
+#kategorie-liste p {
+  margin: 8px 0;
+}
+
+.az-list a,
+#kategorie-liste a {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #eef3ff;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.az-list a:hover,
+#kategorie-liste a:hover {
+  background: #0b5ed7;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 #footer {
-  background: #fff;
+  background: #ffffff;
   border-top: 2px solid #e6e6e6;
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 #footer .container {
@@ -82,8 +161,36 @@ h1, h2, h3 { color: #0b5ed7; }
   color: #555;
 }
 
-/* RTL */
+/* =========================
+   RTL SUPPORT
+========================= */
+
 [dir="rtl"] {
   direction: rtl;
   text-align: right;
+}
+
+[dir="rtl"] ul {
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+[dir="rtl"] .section {
+  text-align: right;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+  .main-header .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .nav-area nav {
+    flex-wrap: wrap;
+  }
 }
