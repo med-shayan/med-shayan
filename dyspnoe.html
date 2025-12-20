@@ -6,133 +6,113 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- HEADER -->
 <div id="header"></div>
 
-<h1 class="lang de">Dyspnoe</h1>
-<h1 class="lang fa" dir="rtl">تنگی نفس</h1>
+<!-- CONTENT -->
+<div class="container">
 
-<div class="section lang de">
-  <h3>Definition</h3>
-  <p>Dyspnoe bezeichnet das subjektive Gefühl von Atemnot.</p>
+  <!-- TITEL -->
+  <h1 class="lang de">Dyspnoe</h1>
+  <h1 class="lang fa" dir="rtl">تنگی نفس</h1>
+
+  <!-- ================= DEUTSCH ================= -->
+
+  <div class="section lang de">
+    <h3>Definition</h3>
+    <p>Dyspnoe bezeichnet das subjektive Gefühl von Atemnot.</p>
+  </div>
+
+  <div class="section lang de">
+    <h3>Pathogenese / Ursachen</h3>
+    <ul>
+      <li>Herzinsuffizienz</li>
+      <li>Lungenerkrankungen</li>
+      <li>Psychische Ursachen (z. B. Angst)</li>
+    </ul>
+  </div>
+
+  <div class="section lang de">
+    <h3>Typische Symptome</h3>
+    <ul>
+      <li>Kurzatmigkeit</li>
+      <li>Beklemmungsgefühl</li>
+      <li>Angst</li>
+    </ul>
+  </div>
+
+  <!-- ================= FARSI ================= -->
+
+  <div class="section lang fa" dir="rtl">
+    <h3>تعریف</h3>
+    <p>تنگی نفس به احساس دشواری در تنفس گفته می‌شود.</p>
+  </div>
+
+  <div class="section lang fa" dir="rtl">
+    <h3>علت‌ها / پاتوژنز</h3>
+    <ul>
+      <li>نارسایی قلبی</li>
+      <li>بیماری‌های ریوی</li>
+      <li>اختلالات اضطرابی</li>
+    </ul>
+  </div>
+
+  <div class="section lang fa" dir="rtl">
+    <h3>علائم شایع</h3>
+    <ul>
+      <li>نفس‌تنگی</li>
+      <li>احساس فشار در قفسه سینه</li>
+      <li>اضطراب</li>
+    </ul>
+  </div>
+
+  <!-- ZURÜCK -->
+  <p class="lang de">
+    <a href="index.html">← Zurück zur Startseite</a>
+  </p>
+
+  <p class="lang fa" dir="rtl">
+    <a href="index.html">← بازگشت به صفحه اصلی</a>
+  </p>
+
 </div>
 
-<div class="section lang de">
-  <h3>Pathogenese / Ursachen</h3>
-  <ul>
-    <li>Herzinsuffizienz</li>
-    <li>Lungenerkrankungen</li>
-    <li>Psychische Ursachen (z. B. Angst)</li>
-  </ul>
-</div>
+<!-- FOOTER -->
+<div id="footer"></div>
 
-<div class="section lang de">
-  <h3>Typische Symptome</h3>
-  <ul>
-    <li>Kurzatmigkeit</li>
-    <li>Beklemmungsgefühl</li>
-    <li>Angst</li>
-  </ul>
-</div>
-
-<div class="section lang fa" dir="rtl">
-  <h3>تعریف</h3>
-  <p>تنگی نفس به احساس دشواری در تنفس گفته می‌شود.</p>
-</div>
-
-<div class="section lang fa" dir="rtl">
-  <h3>علت‌ها / پاتوژنز</h3>
-  <ul>
-    <li>نارسایی قلبی</li>
-    <li>بیماری‌های ریوی</li>
-    <li>اختلالات اضطرابی</li>
-  </ul>
-</div>
-
-<div class="section lang fa" dir="rtl">
-  <h3>علائم شایع</h3>
-  <ul>
-    <li>نفس‌تنگی</li>
-    <li>احساس فشار در قفسه سینه</li>
-    <li>اضطراب</li>
-  </ul>
-</div>
-
-<div class="notice lang de"><strong>Hinweis:</strong> Kein Ersatz für ärztliche Beratung.</div>
-<div class="notice lang fa" dir="rtl"><strong>توجه:</strong> جایگزین تشخیص پزشکی نیست.</div>
-
-<p class="lang de"><a href="index.html">← Zurück zur Übersicht</a></p>
-<p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به فهرست</a></p>
-
+<!-- SPRACHLOGIK -->
 <script>
 function setLang(lang) {
-  // Sprache speichern
   localStorage.setItem("lang", lang);
-
-  // Texte ein/ausblenden
-  document.querySelectorAll('.lang').forEach(el => {
-    el.style.display = 'none';
-  });
-  document.querySelectorAll('.' + lang).forEach(el => {
-    el.style.display = 'block';
-  });
-
-  // Suche informieren (falls vorhanden)
-  if (typeof setSearchLang === "function") {
-    setSearchLang(lang);
-  }
-
-  // Placeholder der Suche setzen (nur Startseite relevant)
-  const searchInput = document.getElementById("search");
-  if (searchInput) {
-    searchInput.placeholder =
-      lang === "fa"
-        ? "اصطلاح پزشکی را وارد کنید"
-        : "Medizinischen Fachbegriff eingeben";
-  }
+  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
 }
-
-// Beim Laden: Sprache aus Speicher lesen
-const savedLang = localStorage.getItem("lang") || "de";
-setLang(savedLang);
 </script>
 
+<!-- HEADER LADEN -->
 <script>
 fetch("header.html")
   .then(res => res.text())
   .then(html => {
-    const header = document.getElementById("header");
-    header.innerHTML = html;
-
-    // 🔒 Sprache SOFORT korrekt setzen
-    const lang = localStorage.getItem("lang") || "de";
-
-    header.querySelectorAll('.lang').forEach(el => {
-      el.style.display = 'none';
-    });
-    header.querySelectorAll('.' + lang).forEach(el => {
-      el.style.display = 'block';
-    });
+    document.getElementById("header").innerHTML = html;
   });
 </script>
 
+<!-- FOOTER LADEN -->
 <script>
 fetch("footer.html")
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById("footer").innerHTML = data;
-
-    // Sprache nachladen (wichtig!)
-    const lang = localStorage.getItem("lang") || "de";
-    document.querySelectorAll('#footer .lang').forEach(el => {
-      el.style.display = 'none';
-    });
-    document.querySelectorAll('#footer .' + lang).forEach(el => {
-      el.style.display = 'block';
-    });
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
   });
 </script>
 
-<div id="footer"></div>
+<!-- STARTSPRACHE -->
+<script>
+const savedLang = localStorage.getItem("lang") || "de";
+setLang(savedLang);
+</script>
 
 </body>
 </html>
