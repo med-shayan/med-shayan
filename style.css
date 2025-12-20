@@ -211,3 +211,30 @@ ul {
     margin-right: 12px;
   }
 }
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+  background: #ffffff;
+  padding: 20px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.footer-separator {
+  border: none;
+  border-top: 2px solid #e6e6e6;
+  margin-bottom: 20px;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-links a {
+  margin-right: 10px;
+}
