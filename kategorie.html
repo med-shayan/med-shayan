@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Kategorie – Medizinisches Lexikon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Sprachumschalter -->
+<div class="lang-switch">
+  <button onclick="setLang('de')">Deutsch</button>
+  <button onclick="setLang('fa')">فارسی</button>
+</div>
+
+<!-- TITEL -->
+<h1 id="category-title-de" class="lang de"></h1>
+<h1 id="category-title-fa" class="lang fa" dir="rtl"></h1>
+
+<!-- BESCHREIBUNG -->
+<p class="lang de">Medizinische Fachbegriffe dieser Kategorie:</p>
+<p class="lang fa" dir="rtl">اصطلاحات پزشکی این دسته‌بندی:</p>
+
+<!-- LISTE -->
+<div id="kategorie-liste"></div>
+
+<!-- ZURÜCK -->
+<p class="lang de">
+  <a href="index.html">← Zurück zur Startseite</a>
+</p>
+
+<p class="lang fa" dir="rtl">
+  <a href="index.html">← بازگشت به صفحه اصلی</a>
+</p>
+
+<!-- SCRIPTS -->
+<script src="begriffe.js"></script>
+
+<script>
+function getCategoryFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("cat");
+}
+
+function renderKategorie(lang) {
+  const catKey = getCategoryFromURL();
+  if (!catKey || !kategorien[catKey]) return;
+
+  // Titel setzen
+  document.getElementById("category-title-de").textContent =
+    kategorien[catKey].de;
+  document.getElementById("category-title-fa").textContent =
+    kategorien[catKey].fa;
+
+  const container = document.getElementById("kategorie-liste");
+  container.innerHTML = "";
+
+  // passende Begriffe filtern
+  const gefiltert = begriffe.filter(b => b.category === catKey);
+
+  // sprachabhängig sortieren
+  gefiltert.sort((a, b) => {
+    const nameA = lang === "fa" ? a.name_fa : a.name_de;
+    const nameB = lang === "fa" ? b.name_fa : b.name_de;
+    const locale = lang === "fa" ? "fa" : "de";
+    return nameA.localeCompare(nameB, locale);
+  });
+
+  gefiltert.forEach(b => {
+    const p = document.createElement("p");
+    const name = lang === "fa" ? b.name_fa : b.name_de;
+    p.innerHTML = `<a href="${b.file}">${name}</a>`;
+    container.appendChild(p);
+  });
+}
+
+function setLang(lang) {
+  // Sprache speichern
+  localStorage.setItem("lang", lang);
+
+  // Texte umschalten
+  document.querySelectorAll('.lang').forEach(el => {
+    el.style.display = 'none';
+  });
+  document.querySelectorAll('.' + lang).forEach(el => {
+    el.style.display = 'block';
+  });
+
+  // Kategorie neu rendern
+  renderKategorie(lang);
+}
+
+// Beim Laden: gespeicherte Sprache nutzen
+const savedLang = localStorage.getItem("lang") || "de";
+setLang(savedLang);
+</script>
+
+</body>
+</html>
