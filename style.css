@@ -1,109 +1,194 @@
-/* Grundlayout */
+/* =========================
+   GLOBAL
+========================= */
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  background-color: #f4f7fb;
-  color: #1f2937;
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
-  line-height: 1.6;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 0;
+  color: #222;
 }
 
-/* Überschriften */
-h1 {
-  color: #0a5ea8;
-  border-bottom: 3px solid #0a5ea8;
-  padding-bottom: 8px;
-}
-
-h2, h3 {
-  color: #0f4c81;
-  margin-top: 30px;
-}
-
-/* Boxen für Inhalte */
-.section {
-  background: #ffffff;
-  padding: 18px 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-/* Listen */
-ul {
-  padding-left: 20px;
-}
-
-/* Links */
 a {
-  color: #0a5ea8;
+  color: #0b5ed7;
   text-decoration: none;
-  font-weight: 500;
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-/* Hinweisbox */
-.notice {
-  background-color: #e8f1fb;
-  border-left: 5px solid #0a5ea8;
-  padding: 12px 15px;
-  font-size: 0.95em;
-}
-
-/* Footer */
-footer {
-  margin-top: 50px;
-  font-size: 0.85em;
-  color: #555;
-  text-align: center;
-}
-/* Sprachumschalter – GLOBAL */
-.lang-switch {
-  text-align: right;
-  margin-bottom: 25px;
-}
-
-.lang-switch button {
-  font-size: 17px;
-  padding: 10px 16px;
-  margin-left: 8px;
-  border-radius: 8px;
-  border: 1px solid #444;
-  background-color: #f2f2f2;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.lang-switch button:hover {
-  background-color: #ddd;
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-}
-
-.header-container nav a {
-  margin-right: 15px;
-  font-weight: 500;
-}
-
-.header-container nav[dir="rtl"] a {
-  margin-left: 15px;
-  margin-right: 0;
-}
-
-.header-container a {
-  text-decoration: none;
+h1, h2, h3 {
   color: #0b5ed7;
 }
 
-.header-container a:hover {
-  text-decoration: underline;
+.lang {
+  display: none;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 14px 24px;
+  border-bottom: 2px solid #e6e6e6;
+}
+
+.nav-area nav a {
+  margin-right: 20px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.nav-area nav[dir="rtl"] a {
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+.lang-switch button {
+  margin-left: 8px;
+  padding: 6px 14px;
+  border: 1px solid #0b5ed7;
+  background: #fff;
+  color: #0b5ed7;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.lang-switch button:hover {
+  background: #0b5ed7;
+  color: #fff;
+}
+
+/* =========================
+   LAYOUT / CONTENT
+========================= */
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.section {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.section h3 {
+  margin-top: 0;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box input {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* =========================
+   LISTS
+========================= */
+
+ul {
+  padding-left: 20px;
+}
+
+[dir="rtl"] ul {
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+/* =========================
+   A–Z LIST
+========================= */
+
+.az-list a {
+  display: inline-block;
+  margin: 6px 10px 6px 0;
+  padding: 6px 10px;
+  background: #eef3ff;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.az-list a:hover {
+  background: #0b5ed7;
+  color: #fff;
+}
+
+/* =========================
+   MEDICAL TERM PAGE
+========================= */
+
+.term-content h3 {
+  margin-top: 20px;
+}
+
+.term-content ul li {
+  margin-bottom: 6px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+#footer {
+  background: #ffffff;
+  border-top: 2px solid #e6e6e6;
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+#footer a {
+  margin-right: 10px;
+}
+
+/* =========================
+   RTL SUPPORT
+========================= */
+
+[dir="rtl"] {
+  text-align: right;
+  direction: rtl;
+}
+
+[dir="rtl"] .section {
+  text-align: right;
+}
+
+/* =========================
+   RESPONSIVE (MOBILE)
+========================= */
+
+@media (max-width: 600px) {
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-area {
+    margin-bottom: 10px;
+  }
+
+  .nav-area nav a {
+    margin-right: 12px;
+  }
 }
