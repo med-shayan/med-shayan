@@ -123,5 +123,12 @@ fetch("footer.html")
   });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const lang = localStorage.getItem("lang") || "de";
+  setLang(lang);
+});
+</script>
+
 </body>
 </html>
