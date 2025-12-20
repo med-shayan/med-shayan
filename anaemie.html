@@ -6,15 +6,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div style="text-align:right; margin-bottom:20px;">
+  <button onclick="setLang('de')">Deutsch</button>
+  <button onclick="setLang('fa')">فارسی</button>
+</div>
 
 <h1>Anämie</h1>
 
-<div class="section">
+<div class="section lang de">
   <h3>Definition</h3>
   <p>
     Anämie bezeichnet eine Verminderung des Hämoglobingehalts im Blut, wodurch der
     Sauerstofftransport im Körper eingeschränkt ist.
   </p>
+</div>
+  <div class="section lang fa" dir="rtl">
+  <h3>تعریف</h3>
+  <p>کم‌خونی به کاهش میزان هموگلوبین در خون گفته می‌شود.</p>
 </div>
 
 <div class="section">
@@ -41,6 +49,19 @@
 </div>
 
 <p><a href="index.html">← Zurück zur Übersicht</a></p>
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang').forEach(el => {
+    el.style.display = 'none';
+  });
 
+  document.querySelectorAll('.' + lang).forEach(el => {
+    el.style.display = 'block';
+  });
+}
+
+// Standard: Deutsch anzeigen
+setLang('de');
+</script>
 </body>
 </html>
