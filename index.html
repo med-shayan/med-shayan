@@ -83,9 +83,14 @@ function setLang(lang) {
   document.querySelectorAll('.' + lang).forEach(el => {
     el.style.display = 'block';
   });
+
+  // Suche auf aktuelle Sprache umstellen
+  if (typeof setSearchLang === "function") {
+    setSearchLang(lang);
+  }
 }
 
-// Standard: Deutsch
+// Standard
 setLang('de');
 </script>
 
