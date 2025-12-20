@@ -15,7 +15,7 @@
 
   <!-- TITEL -->
   <h1 class="lang de">A–Z Übersicht</h1>
-  <h1 class="lang fa" dir="rtl">فهرست الفبایی</h1>
+  <h1 class="lang fa" dir="rtl">فهرست اصطلاحات پزشکی</h1>
 
   <!-- BESCHREIBUNG -->
   <p class="lang de">
@@ -23,7 +23,7 @@
   </p>
 
   <p class="lang fa" dir="rtl">
-    تمام اصطلاحات پزشکی به ترتیب حروف الفبا مرتب شده‌اند.
+    تمام اصطلاحات پزشکی به صورت فهرست مرتب‌شده نمایش داده شده‌اند.
   </p>
 
   <!-- LISTE -->
@@ -48,6 +48,14 @@
 
 <!-- LOGIK -->
 <script>
+function normalizeFa(text) {
+  return text
+    .replace(/ي/g, "ی")
+    .replace(/ك/g, "ک")
+    .replace(/\u200c/g, "")
+    .trim();
+}
+
 function setLang(lang) {
   localStorage.setItem("lang", lang);
 
@@ -66,31 +74,45 @@ function renderAZ(lang) {
   container.innerHTML = "";
 
   const sorted = [...begriffe].sort((a, b) => {
-    const nameA = lang === "fa" ? a.name_fa : a.name_de;
-    const nameB = lang === "fa" ? b.name_fa : b.name_de;
-    const locale = lang === "fa" ? "fa" : "de";
-    return nameA.localeCompare(nameB, locale);
+    const nameA = lang === "fa" ? normalizeFa(a.name_fa) : a.name_de;
+    const nameB = lang === "fa" ? normalizeFa(b.name_fa) : b.name_de;
+    return nameA.localeCompare(nameB, lang === "fa" ? "fa" : "de");
   });
 
-  let currentLetter = "";
+  // 🔤 DEUTSCH: mit Buchstaben
+  if (lang === "de") {
+    let currentLetter = "";
 
-  sorted.forEach(b => {
-    const name = lang === "fa" ? b.name_fa : b.name_de;
-    if (!name) return;
+    sorted.forEach(b => {
+      const name = b.name_de;
+      if (!name) return;
 
-    const letter = name.charAt(0);
+      const letter = name.charAt(0).toUpperCase();
 
-    if (letter !== currentLetter) {
-      currentLetter = letter;
-      const h2 = document.createElement("h2");
-      h2.textContent = letter;
-      container.appendChild(h2);
-    }
+      if (letter !== currentLetter) {
+        currentLetter = letter;
+        const h2 = document.createElement("h2");
+        h2.textContent = letter;
+        container.appendChild(h2);
+      }
 
-    const p = document.createElement("p");
-    p.innerHTML = `<a href="${b.file}">${name}</a>`;
-    container.appendChild(p);
-  });
+      const p = document.createElement("p");
+      p.innerHTML = `<a href="${b.file}">${name}</a>`;
+      container.appendChild(p);
+    });
+  }
+
+  // 🇮🇷 FARSI: einfache Liste (keine falschen Buchstaben)
+  if (lang === "fa") {
+    sorted.forEach(b => {
+      const name = b.name_fa;
+      if (!name) return;
+
+      const p = document.createElement("p");
+      p.innerHTML = `<a href="${b.file}">${name}</a>`;
+      container.appendChild(p);
+    });
+  }
 }
 </script>
 
