@@ -1,21 +1,33 @@
-const inputDe = document.getElementById("search");
-const inputFa = document.getElementById("search-fa");
+let currentLang = "de";
+
+const searchInput = document.getElementById("search");
 const results = document.getElementById("search-results");
 
-function normalize(text) {
+function normalizeDe(text) {
   return text.toLowerCase()
-    .replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss");
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss");
 }
 
-function search(lang, value) {
+function search(value) {
   results.innerHTML = "";
   if (!value) return;
 
   begriffe.forEach(b => {
-    const text = lang === "fa" ? b.name_fa : b.name_de;
-    const check = lang === "fa" ? text : normalize(text);
+    const text = currentLang === "fa" ? b.name_fa : b.name_de;
+    if (!text) return;
 
-    if (check.includes(lang === "fa" ? value : normalize(value))) {
+    const check = currentLang === "fa"
+      ? text
+      : normalizeDe(text);
+
+    const query = currentLang === "fa"
+      ? value
+      : normalizeDe(value);
+
+    if (check.includes(query)) {
       const p = document.createElement("p");
       p.innerHTML = `<a href="${b.file}">${text}</a>`;
       results.appendChild(p);
@@ -23,9 +35,15 @@ function search(lang, value) {
   });
 }
 
-if (inputDe) {
-  inputDe.addEventListener("input", e => search("de", e.target.value));
+// Reaktion auf Tippen
+if (searchInput) {
+  searchInput.addEventListener("input", e => {
+    search(e.target.value);
+  });
 }
-if (inputFa) {
-  inputFa.addEventListener("input", e => search("fa", e.target.value));
+
+// Sprache von außen setzen (wird von index.html genutzt)
+function setSearchLang(lang) {
+  currentLang = lang;
+  results.innerHTML = "";
 }
