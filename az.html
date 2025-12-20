@@ -46,7 +46,7 @@
 <!-- DATEN -->
 <script src="begriffe.js"></script>
 
-<!-- LOGIK -->
+<!-- ZENTRALE LOGIK (STABIL & EINHEITLICH) -->
 <script>
 function normalizeFa(text) {
   return text
@@ -59,11 +59,11 @@ function normalizeFa(text) {
 function setLang(lang) {
   localStorage.setItem("lang", lang);
 
-  document.querySelectorAll('.lang').forEach(el => {
-    el.style.display = 'none';
+  document.querySelectorAll(".lang").forEach(el => {
+    el.style.display = "none";
   });
-  document.querySelectorAll('.' + lang).forEach(el => {
-    el.style.display = 'block';
+  document.querySelectorAll(".lang." + lang).forEach(el => {
+    el.style.display = "block";
   });
 
   renderAZ(lang);
@@ -79,7 +79,6 @@ function renderAZ(lang) {
     return nameA.localeCompare(nameB, lang === "fa" ? "fa" : "de");
   });
 
-  /* ===== DEUTSCH: A–Z ===== */
   if (lang === "de") {
     let currentLetter = "";
 
@@ -88,7 +87,6 @@ function renderAZ(lang) {
       if (!name) return;
 
       const letter = name.charAt(0).toUpperCase();
-
       if (letter !== currentLetter) {
         currentLetter = letter;
         const h2 = document.createElement("h2");
@@ -102,7 +100,6 @@ function renderAZ(lang) {
     });
   }
 
-  /* ===== FARSI: LISTE ===== */
   if (lang === "fa") {
     sorted.forEach(b => {
       const name = b.name_fa;
@@ -114,35 +111,34 @@ function renderAZ(lang) {
     });
   }
 }
-</script>
 
-<!-- ✅ KORREKTE LADELOGIK FÜR HEADER & FOOTER -->
-<script>
-let headerLoaded = false;
-let footerLoaded = false;
+document.addEventListener("DOMContentLoaded", () => {
+  let headerLoaded = false;
+  let footerLoaded = false;
 
-function initLanguageIfReady() {
-  if (headerLoaded && footerLoaded) {
-    const savedLang = localStorage.getItem("lang") || "de";
-    setLang(savedLang);
+  function initLangIfReady() {
+    if (headerLoaded && footerLoaded) {
+      const lang = localStorage.getItem("lang") || "de";
+      setLang(lang);
+    }
   }
-}
 
-fetch("header.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("header").innerHTML = html;
-    headerLoaded = true;
-    initLanguageIfReady();
-  });
+  fetch("header.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("header").innerHTML = html;
+      headerLoaded = true;
+      initLangIfReady();
+    });
 
-fetch("footer.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("footer").innerHTML = html;
-    footerLoaded = true;
-    initLanguageIfReady();
-  });
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("footer").innerHTML = html;
+      footerLoaded = true;
+      initLangIfReady();
+    });
+});
 </script>
 
 </body>
