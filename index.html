@@ -7,21 +7,29 @@
 </head>
 <body>
 
-<h1>Medizinisches Lexikon</h1>
-<div class="section">
-<p>
-  Diese Webseite bietet kurze, verständliche Erklärungen medizinischer Fachbegriffe.
-  Sie richtet sich an MFA, Pflegekräfte, Schüler und medizinisch Interessierte.
-</p>
-
-<p>
-  <strong>von Shayan Daneshkhah</strong>
-</p>
-  </p>
+<!-- Sprachumschalter -->
+<div class="lang-switch">
+  <button onclick="setLang('de')">Deutsch</button>
+  <button onclick="setLang('fa')">فارسی</button>
 </div>
 
-  
-<div class="section">
+<!-- TITEL -->
+<h1 class="lang de">Medizinisches Lexikon</h1>
+<h1 class="lang fa" dir="rtl">واژه‌نامه پزشکی</h1>
+
+<!-- BESCHREIBUNG -->
+<p class="lang de">
+  Diese Webseite bietet kurze, verständliche Erklärungen medizinischer Fachbegriffe
+  für MFA, Pflegekräfte und medizinisch Interessierte.
+</p>
+
+<p class="lang fa" dir="rtl">
+  این وب‌سایت شامل توضیحات کوتاه و قابل فهم اصطلاحات پزشکی
+  برای دستیاران پزشکی، پرستاران و علاقه‌مندان به پزشکی است.
+</p>
+
+<!-- SUCHE -->
+<div class="section lang de">
   <h3>Begriff suchen</h3>
   <input
     type="text"
@@ -31,20 +39,55 @@
   >
   <div id="search-results" style="margin-top:15px;"></div>
 </div>
-  
 
-<div class="section">
+<div class="section lang fa" dir="rtl">
+  <h3>جستجوی اصطلاح</h3>
+  <input
+    type="text"
+    id="search-fa"
+    placeholder="اصطلاح پزشکی را وارد کنید…"
+    style="width:100%; padding:10px; font-size:1em;"
+  >
+  <div id="search-results" style="margin-top:15px;"></div>
+</div>
+
+<!-- BEGRIFFE -->
+<div class="section lang de">
   <h3>Begriffe</h3>
   <ul>
     <li><a href="az.html">A–Z Übersicht aller Begriffe</a></li>
   </ul>
 </div>
 
-<footer>
-  <p>Kein Ersatz für ärztliche Beratung.</p>
-</footer>
+<div class="section lang fa" dir="rtl">
+  <h3>اصطلاحات</h3>
+  <ul>
+    <li><a href="az.html">فهرست الفبایی اصطلاحات</a></li>
+  </ul>
+</div>
 
-</body> 
-  <script src="begriffe.js"></script>
+<!-- AUTOR -->
+<p class="lang de"><strong>von Shayan Daneshkhah</strong></p>
+<p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانش خواه</strong></p>
+
+<!-- JAVASCRIPT -->
+<script src="begriffe.js"></script>
 <script src="search.js"></script>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang').forEach(el => {
+    el.style.display = 'none';
+  });
+
+  document.querySelectorAll('.' + lang).forEach(el => {
+    el.style.display = 'block';
+  });
+}
+
+// Standard: Deutsch
+setLang('de');
+</script>
+
+</body>
 </html>
