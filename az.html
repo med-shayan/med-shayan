@@ -7,28 +7,37 @@
 </head>
 <body>
 
+<!-- Sprachumschalter -->
 <div class="lang-switch">
   <button onclick="setLang('de')">Deutsch</button>
   <button onclick="setLang('fa')">فارسی</button>
 </div>
 
+<!-- TITEL -->
 <h1 class="lang de">A–Z Übersicht</h1>
 <h1 class="lang fa" dir="rtl">فهرست الفبایی</h1>
 
 <p class="lang de">Alle medizinischen Fachbegriffe alphabetisch sortiert.</p>
 <p class="lang fa" dir="rtl">تمام اصطلاحات پزشکی به ترتیب حروف الفبا.</p>
 
+<!-- LISTE -->
 <div id="az-liste"></div>
 
+<!-- ZURÜCK -->
 <p class="lang de"><a href="index.html">← Zurück zur Startseite</a></p>
 <p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به صفحه اصلی</a></p>
 
+<!-- SCRIPTS -->
 <script src="begriffe.js"></script>
 
 <script>
 function setLang(lang) {
-  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.' + lang).forEach(el => el.style.display = 'block');
+  document.querySelectorAll('.lang').forEach(el => {
+    el.style.display = 'none';
+  });
+  document.querySelectorAll('.' + lang).forEach(el => {
+    el.style.display = 'block';
+  });
   renderAZ(lang);
 }
 
@@ -36,7 +45,8 @@ function renderAZ(lang) {
   const container = document.getElementById("az-liste");
   container.innerHTML = "";
 
-  const sorted = begriffe.sort((a, b) =>
+  // nach deutscher Bezeichnung sortieren
+  const sorted = [...begriffe].sort((a, b) =>
     a.name_de.localeCompare(b.name_de, "de")
   );
 
@@ -44,6 +54,8 @@ function renderAZ(lang) {
 
   sorted.forEach(b => {
     const name = lang === "fa" ? b.name_fa : b.name_de;
+    if (!name) return;
+
     const letter = name.charAt(0).toUpperCase();
 
     if (letter !== currentLetter) {
@@ -59,6 +71,7 @@ function renderAZ(lang) {
   });
 }
 
+// Standard: Deutsch
 setLang('de');
 </script>
 
