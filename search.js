@@ -35,14 +35,12 @@ function search(value) {
   });
 }
 
-// Reaktion auf Tippen
 if (searchInput) {
   searchInput.addEventListener("input", e => {
     search(e.target.value);
   });
 }
 
-// Sprache von außen setzen (wird von index.html genutzt)
 function setSearchLang(lang) {
   currentLang = lang;
   results.innerHTML = "";
