@@ -29,15 +29,15 @@ const begriffe = [
   {
     name_de: "Anämie",
     name_fa: "کم‌خونی",
-    search_de: "anaemie anaemie",
-    search_fa: "کمخونی کم‌خونی",
+    search_de: "anaemie anaemie eisenmangel blutarmut",
+    search_fa: "کم خونی کم‌خونی",
     category: "haematologie",
     file: "anaemie.html"
   },
   {
     name_de: "Leukozytose",
     name_fa: "لکوسیتوز",
-    search_de: "leukozytose",
+    search_de: "leukozytose erhöhte leukozyten",
     search_fa: "لکوسیتوز",
     category: "haematologie",
     file: "leukozytose.html"
@@ -45,16 +45,16 @@ const begriffe = [
   {
     name_de: "Bradykardie",
     name_fa: "برادی‌کاردی",
-    search_de: "bradykardie",
-    search_fa: "برادیکاردی برادی‌کاردی",
+    search_de: "bradykardie langsamer puls",
+    search_fa: "برادی کاردی برادی‌کاردی",
     category: "kardiologie",
     file: "bradykardie.html"
   },
   {
     name_de: "Tachykardie",
     name_fa: "تاکی‌کاردی",
-    search_de: "tachykardie",
-    search_fa: "تاکیکاردی تاکی‌کاردی",
+    search_de: "tachykardie herzrasen schneller puls",
+    search_fa: "تاکی کاردی تاکی‌کاردی",
     category: "kardiologie",
     file: "tachykardie.html"
   },
@@ -62,22 +62,22 @@ const begriffe = [
     name_de: "Hypertonie",
     name_fa: "فشار خون بالا",
     search_de: "hypertonie bluthochdruck",
-    search_fa: "فشارخون بالا فشار خون بالا",
+    search_fa: "فشار خون بالا فشارخون بالا",
     category: "kardiologie",
     file: "hypertonie.html"
   },
   {
     name_de: "Hypotonie",
     name_fa: "فشار خون پایین",
-    search_de: "hypotonie blutdruck niedrig",
-    search_fa: "فشارخون پایین فشار خون پایین",
+    search_de: "hypotonie niedriger blutdruck",
+    search_fa: "فشار خون پایین فشارخون پایین",
     category: "kardiologie",
     file: "hypotonie.html"
   },
   {
     name_de: "Dyspnoe",
     name_fa: "تنگی نفس",
-    search_de: "dyspnoe atemnot",
+    search_de: "dyspnoe atemnot kurzatmigkeit",
     search_fa: "تنگی نفس",
     category: "pneumologie",
     file: "dyspnoe.html"
@@ -85,15 +85,15 @@ const begriffe = [
   {
     name_de: "Ödem",
     name_fa: "ادم",
-    search_de: "oedem ödem",
-    search_fa: "ادم",
+    search_de: "oedem ödem schwellung",
+    search_fa: "ادم ورم",
     category: "allgemein",
     file: "oedem.html"
   },
   {
     name_de: "Synkope",
     name_fa: "سنکوپ",
-    search_de: "synkope ohnmacht",
+    search_de: "synkope ohnmacht bewusstlosigkeit",
     search_fa: "سنکوپ غش",
     category: "allgemein",
     file: "synkope.html"
