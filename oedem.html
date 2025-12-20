@@ -7,14 +7,20 @@
 </head>
 <body>
 
-<h1>Ödem</h1>
-
-<div class="section">
-  <h3>Definition</h3>
-  <p>Ein Ödem ist eine Flüssigkeitsansammlung im Interzellularraum des Gewebes.</p>
+<div style="text-align:right; margin-bottom:20px;">
+  <button onclick="setLang('de')">Deutsch</button>
+  <button onclick="setLang('fa')">فارسی</button>
 </div>
 
-<div class="section">
+<h1 class="lang de">Ödem</h1>
+<h1 class="lang fa" dir="rtl">ادم</h1>
+
+<div class="section lang de">
+  <h3>Definition</h3>
+  <p>Ein Ödem ist eine Flüssigkeitsansammlung im Gewebe.</p>
+</div>
+
+<div class="section lang de">
   <h3>Pathogenese / Ursachen</h3>
   <ul>
     <li>Herzinsuffizienz</li>
@@ -23,20 +29,51 @@
   </ul>
 </div>
 
-<div class="section">
+<div class="section lang de">
   <h3>Typische Symptome</h3>
   <ul>
     <li>Schwellung</li>
     <li>Spannungsgefühl</li>
-    <li>Druckdolenz</li>
+    <li>Druckempfindlichkeit</li>
   </ul>
 </div>
 
-<div class="notice">
-  <strong>Hinweis:</strong> Die Angaben dienen der Information und ersetzen keine ärztliche Diagnostik oder Therapie.
+<div class="section lang fa" dir="rtl">
+  <h3>تعریف</h3>
+  <p>ادم به تجمع مایع در بافت‌های بدن گفته می‌شود.</p>
 </div>
 
-<p><a href="index.html">← Zurück zur Übersicht</a></p>
+<div class="section lang fa" dir="rtl">
+  <h3>علت‌ها / پاتوژنز</h3>
+  <ul>
+    <li>نارسایی قلبی</li>
+    <li>اختلال در بازگشت وریدی</li>
+    <li>بیماری‌های کلیوی</li>
+  </ul>
+</div>
+
+<div class="section lang fa" dir="rtl">
+  <h3>علائم شایع</h3>
+  <ul>
+    <li>تورم</li>
+    <li>احساس کشیدگی پوست</li>
+    <li>درد با فشار</li>
+  </ul>
+</div>
+
+<div class="notice lang de"><strong>Hinweis:</strong> Kein Ersatz für ärztliche Beratung.</div>
+<div class="notice lang fa" dir="rtl"><strong>توجه:</strong> جایگزین تشخیص پزشکی نیست.</div>
+
+<p class="lang de"><a href="index.html">← Zurück zur Übersicht</a></p>
+<p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به فهرست</a></p>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll('.lang').forEach(el=>el.style.display='none');
+  document.querySelectorAll('.'+lang).forEach(el=>el.style.display='block');
+}
+setLang('de');
+</script>
 
 </body>
 </html>
