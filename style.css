@@ -27,7 +27,9 @@ h1, h2, h3 {
   display: none;
 }
 
-/* ===== HEADER ===== */
+/* =========================
+   HEADER & NAVIGATION
+========================= */
 
 .main-header {
   display: flex;
@@ -38,12 +40,16 @@ h1, h2, h3 {
   border-bottom: 3px solid #0b5ed7;
 }
 
-.nav-area nav {
+.nav-area {
   display: flex;
+}
+
+.nav-area .lang {
+  display: none;
   gap: 24px;
 }
 
-.nav-area nav a {
+.nav-area .lang a {
   padding: 8px 14px;
   border-radius: 6px;
   font-weight: 600;
@@ -51,27 +57,17 @@ h1, h2, h3 {
   color: #0b5ed7;
 }
 
-.nav-area nav a:hover {
+.nav-area .lang a:hover {
   background: #0b5ed7;
   color: #ffffff;
   text-decoration: none;
 }
 
-.nav-area nav[dir="rtl"] {
+.nav-area .lang[dir="rtl"] {
   flex-direction: row-reverse;
 }
 
-/* =========================
-   ZENTRALER CONTENT-CONTAINER
-========================= */
-
-.container {
-  max-width: 1000px;
-  margin: 40px auto;      /* Abstand oben/unten + zentriert */
-  padding: 0 24px;        /* 👈 DAS ist der linke/rechte Abstand */
-}
-
-/* Sprachwahl */
+/* Sprachumschalter */
 
 .lang-switch button {
   padding: 8px 14px;
@@ -80,21 +76,27 @@ h1, h2, h3 {
   border: 2px solid #0b5ed7;
   background: #ffffff;
   color: #0b5ed7;
+  cursor: pointer;
 }
 
 .lang-switch button:hover {
   background: #0b5ed7;
   color: #ffffff;
 }
+
 /* =========================
-   LAYOUT / CONTENT
+   ZENTRALER CONTENT-CONTAINER
 ========================= */
 
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 40px auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
+
+/* =========================
+   CONTENT / SECTIONS
+========================= */
 
 .section {
   background: #ffffff;
@@ -152,35 +154,6 @@ ul {
 }
 
 /* =========================
-   MEDICAL TERM PAGE
-========================= */
-
-.term-content h3 {
-  margin-top: 20px;
-}
-
-.term-content ul li {
-  margin-bottom: 6px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-#footer {
-  background: #ffffff;
-  border-top: 2px solid #e6e6e6;
-  margin-top: 40px;
-  padding: 20px;
-  font-size: 0.9em;
-  color: #555;
-}
-
-#footer a {
-  margin-right: 10px;
-}
-
-/* =========================
    RTL SUPPORT
 ========================= */
 
@@ -189,38 +162,16 @@ ul {
   direction: rtl;
 }
 
-[dir="rtl"] .section {
-  text-align: right;
-}
-
-/* =========================
-   RESPONSIVE (MOBILE)
-========================= */
-
-@media (max-width: 600px) {
-  .main-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-area {
-    margin-bottom: 10px;
-  }
-
-  .nav-area nav a {
-    margin-right: 12px;
-  }
-}
-
 /* =========================
    FOOTER
 ========================= */
 
 .site-footer {
   background: #ffffff;
-  padding: 20px;
+  padding: 20px 0;
   font-size: 0.9em;
   color: #555;
+  border-top: 2px solid #e6e6e6;
 }
 
 .footer-separator {
@@ -237,4 +188,27 @@ ul {
 
 .footer-links a {
   margin-right: 10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-area {
+    margin-bottom: 10px;
+  }
+
+  .nav-area .lang a {
+    margin-right: 12px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
 }
