@@ -99,9 +99,20 @@ setLang(savedLang);
 
 <script>
 fetch("header.html")
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById("header").innerHTML = data;
+  .then(res => res.text())
+  .then(html => {
+    const header = document.getElementById("header");
+    header.innerHTML = html;
+
+    // 🔒 Sprache SOFORT korrekt setzen
+    const lang = localStorage.getItem("lang") || "de";
+
+    header.querySelectorAll('.lang').forEach(el => {
+      el.style.display = 'none';
+    });
+    header.querySelectorAll('.' + lang).forEach(el => {
+      el.style.display = 'block';
+    });
   });
 </script>
 
