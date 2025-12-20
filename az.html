@@ -79,7 +79,7 @@ function renderAZ(lang) {
     return nameA.localeCompare(nameB, lang === "fa" ? "fa" : "de");
   });
 
-  // 🔤 DEUTSCH: mit Buchstaben
+  /* ===== DEUTSCH: A–Z ===== */
   if (lang === "de") {
     let currentLetter = "";
 
@@ -102,7 +102,7 @@ function renderAZ(lang) {
     });
   }
 
-  // 🇮🇷 FARSI: einfache Liste (keine falschen Buchstaben)
+  /* ===== FARSI: LISTE ===== */
   if (lang === "fa") {
     sorted.forEach(b => {
       const name = b.name_fa;
@@ -116,21 +116,32 @@ function renderAZ(lang) {
 }
 </script>
 
-<!-- HEADER LADEN -->
+<!-- ✅ KORREKTE LADELOGIK FÜR HEADER & FOOTER -->
 <script>
+let headerLoaded = false;
+let footerLoaded = false;
+
+function initLanguageIfReady() {
+  if (headerLoaded && footerLoaded) {
+    const savedLang = localStorage.getItem("lang") || "de";
+    setLang(savedLang);
+  }
+}
+
 fetch("header.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("header").innerHTML = html;
+    headerLoaded = true;
+    initLanguageIfReady();
   });
-</script>
 
-<!-- FOOTER LADEN -->
-<script>
 fetch("footer.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("footer").innerHTML = html;
+    footerLoaded = true;
+    initLanguageIfReady();
   });
 </script>
 
