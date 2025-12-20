@@ -17,27 +17,39 @@
 <h1 class="lang de">A–Z Übersicht</h1>
 <h1 class="lang fa" dir="rtl">فهرست الفبایی</h1>
 
-<p class="lang de">Alle medizinischen Fachbegriffe alphabetisch sortiert.</p>
-<p class="lang fa" dir="rtl">تمام اصطلاحات پزشکی به ترتیب حروف الفبا.</p>
+<!-- BESCHREIBUNG -->
+<p class="lang de">
+  Alle medizinischen Fachbegriffe alphabetisch sortiert.
+</p>
+<p class="lang fa" dir="rtl">
+  تمام اصطلاحات پزشکی به ترتیب حروف الفبا مرتب شده‌اند.
+</p>
 
 <!-- LISTE -->
 <div id="az-liste"></div>
 
 <!-- ZURÜCK -->
-<p class="lang de"><a href="index.html">← Zurück zur Startseite</a></p>
-<p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به صفحه اصلی</a></p>
+<p class="lang de">
+  <a href="index.html">← Zurück zur Startseite</a>
+</p>
+<p class="lang fa" dir="rtl">
+  <a href="index.html">← بازگشت به صفحه اصلی</a>
+</p>
 
 <!-- SCRIPTS -->
 <script src="begriffe.js"></script>
 
 <script>
 function setLang(lang) {
+  // Sprache umschalten
   document.querySelectorAll('.lang').forEach(el => {
     el.style.display = 'none';
   });
   document.querySelectorAll('.' + lang).forEach(el => {
     el.style.display = 'block';
   });
+
+  // Liste neu rendern
   renderAZ(lang);
 }
 
@@ -45,10 +57,13 @@ function renderAZ(lang) {
   const container = document.getElementById("az-liste");
   container.innerHTML = "";
 
-  // nach deutscher Bezeichnung sortieren
-  const sorted = [...begriffe].sort((a, b) =>
-    a.name_de.localeCompare(b.name_de, "de")
-  );
+  // sprachabhängig sortieren
+  const sorted = [...begriffe].sort((a, b) => {
+    const nameA = lang === "fa" ? a.name_fa : a.name_de;
+    const nameB = lang === "fa" ? b.name_fa : b.name_de;
+    const locale = lang === "fa" ? "fa" : "de";
+    return nameA.localeCompare(nameB, locale);
+  });
 
   let currentLetter = "";
 
@@ -56,7 +71,7 @@ function renderAZ(lang) {
     const name = lang === "fa" ? b.name_fa : b.name_de;
     if (!name) return;
 
-    const letter = name.charAt(0).toUpperCase();
+    const letter = name.charAt(0);
 
     if (letter !== currentLetter) {
       currentLetter = letter;
