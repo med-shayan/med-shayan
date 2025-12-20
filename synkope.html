@@ -13,7 +13,6 @@
 <!-- CONTENT -->
 <div class="container">
 
-  <!-- TITEL -->
   <h1 class="lang de">Synkope</h1>
   <h1 class="lang fa" dir="rtl">سنکوپ</h1>
 
@@ -50,7 +49,8 @@
   <div class="section lang fa" dir="rtl">
     <h3>تعریف</h3>
     <p>
-      سنکوپ به از دست دادن ناگهانی و موقت هوشیاری به علت کاهش گذرای خون‌رسانی به مغز گفته می‌شود.
+      سنکوپ به از دست دادن ناگهانی و موقت هوشیاری
+      به علت کاهش گذرای خون‌رسانی به مغز گفته می‌شود.
     </p>
   </div>
 
@@ -73,45 +73,48 @@
   </div>
 
   <!-- ZURÜCK -->
-  <p class="lang de">
-    <a href="index.html">← Zurück zur Startseite</a>
-  </p>
-
-  <p class="lang fa" dir="rtl">
-    <a href="index.html">← بازگشت به صفحه اصلی</a>
-  </p>
+  <p class="lang de"><a href="index.html">← Zurück zur Startseite</a></p>
+  <p class="lang fa" dir="rtl"><a href="index.html">← بازگشت به صفحه اصلی</a></p>
 
 </div>
 
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- SPRACHLOGIK -->
+<!-- ================= SPRACHLOGIK (STABIL) ================= -->
 <script>
 function setLang(lang) {
   localStorage.setItem("lang", lang);
-  document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
-  document.querySelectorAll('.' + lang).forEach(el => {
-    el.style.display = 'block';
-  });
+  document.querySelectorAll(".lang").forEach(e => e.style.display = "none");
+  document.querySelectorAll(".lang." + lang).forEach(e => e.style.display = "block");
 }
-</script>
 
-<!-- HEADER LADEN -->
-<script>
+let headerLoaded = false;
+let footerLoaded = false;
+
+function initLangIfReady() {
+  if (headerLoaded && footerLoaded) {
+    const lang = localStorage.getItem("lang") || "de";
+    setLang(lang);
+  }
+}
+
+/* HEADER */
 fetch("header.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("header").innerHTML = html;
+    headerLoaded = true;
+    initLangIfReady();
   });
-</script>
 
-<!-- FOOTER LADEN -->
-<script>
+/* FOOTER */
 fetch("footer.html")
   .then(res => res.text())
   .then(html => {
     document.getElementById("footer").innerHTML = html;
+    footerLoaded = true;
+    initLangIfReady();
   });
 </script>
 
