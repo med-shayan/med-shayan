@@ -150,6 +150,22 @@ const savedLang = localStorage.getItem("lang") || "de";
 setLang(savedLang);
 </script>
 
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+
+    // Sprache nachladen (wichtig!)
+    const lang = localStorage.getItem("lang") || "de";
+    document.querySelectorAll('#footer .lang').forEach(el => {
+      el.style.display = 'none';
+    });
+    document.querySelectorAll('#footer .' + lang).forEach(el => {
+      el.style.display = 'block';
+    });
+  });
+</script>
 <div id="footer"></div>
 </body>
 </html>
