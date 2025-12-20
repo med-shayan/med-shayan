@@ -1,23 +1,31 @@
-const searchInput = document.getElementById("search");
-const resultsContainer = document.getElementById("search-results");
+const inputDe = document.getElementById("search");
+const inputFa = document.getElementById("search-fa");
+const results = document.getElementById("search-results");
 
-searchInput.addEventListener("input", () => {
-  const query = searchInput.value.toLowerCase();
-  resultsContainer.innerHTML = "";
+function normalize(text) {
+  return text.toLowerCase()
+    .replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss");
+}
 
-  if (query.length === 0) return;
+function search(lang, value) {
+  results.innerHTML = "";
+  if (!value) return;
 
-  const treffer = begriffe.filter(b =>
-    b.name.toLowerCase().includes(query)
-  );
+  begriffe.forEach(b => {
+    const text = lang === "fa" ? b.name_fa : b.name_de;
+    const check = lang === "fa" ? text : normalize(text);
 
-  treffer.forEach(b => {
-    const p = document.createElement("p");
-    p.innerHTML = `<a href="${b.file}">${b.name}</a>`;
-    resultsContainer.appendChild(p);
+    if (check.includes(lang === "fa" ? value : normalize(value))) {
+      const p = document.createElement("p");
+      p.innerHTML = `<a href="${b.file}">${text}</a>`;
+      results.appendChild(p);
+    }
   });
+}
 
-  if (treffer.length === 0) {
-    resultsContainer.innerHTML = "<p>Kein Begriff gefunden.</p>";
-  }
-});
+if (inputDe) {
+  inputDe.addEventListener("input", e => search("de", e.target.value));
+}
+if (inputFa) {
+  inputFa.addEventListener("input", e => search("fa", e.target.value));
+}
