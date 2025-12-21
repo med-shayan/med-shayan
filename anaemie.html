@@ -13,46 +13,80 @@
 <!-- CONTENT -->
 <div class="container">
 
+  <!-- TITEL -->
   <h1 class="lang de">Anämie</h1>
   <h1 class="lang fa" dir="rtl">کم‌خونی</h1>
 
-  <!-- DE -->
+  <!-- ================= DEUTSCH ================= -->
+
   <div class="section lang de">
     <h3>Definition</h3>
     <p>
       Anämie bezeichnet eine Verminderung des Hämoglobingehalts im Blut,
-      wodurch der Sauerstofftransport eingeschränkt ist.
+      wodurch der Sauerstofftransport im Körper eingeschränkt ist.
     </p>
   </div>
 
   <div class="section lang de">
-    <h3>Ursachen</h3>
+    <h3>Pathogenese / Ursachen</h3>
     <ul>
       <li>Eisenmangel</li>
-      <li>Blutverlust</li>
+      <li>Akuter oder chronischer Blutverlust</li>
       <li>Vitamin-B12- oder Folsäuremangel</li>
+      <li>Störungen der Blutbildung</li>
     </ul>
   </div>
 
-  <!-- FA -->
+  <div class="section lang de">
+    <h3>Typische Symptome</h3>
+    <ul>
+      <li>Müdigkeit</li>
+      <li>Blässe der Haut und Schleimhäute</li>
+      <li>Leistungsabfall</li>
+      <li>Schwindel</li>
+      <li>Kurzatmigkeit bei Belastung</li>
+    </ul>
+  </div>
+
+  <!-- ================= FARSI ================= -->
+
   <div class="section lang fa" dir="rtl">
     <h3>تعریف</h3>
     <p>
-      کم‌خونی به کاهش هموگلوبین خون و اختلال در اکسیژن‌رسانی گفته می‌شود.
+      کم‌خونی به حالتی گفته می‌شود که میزان هموگلوبین خون کمتر از حد طبیعی باشد
+      و در نتیجه اکسیژن‌رسانی به بافت‌های بدن کاهش پیدا کند.
     </p>
   </div>
 
   <div class="section lang fa" dir="rtl">
-    <h3>علت‌ها</h3>
+    <h3>علت‌ها / پاتوژنز شایع</h3>
     <ul>
-      <li>کمبود آهن</li>
-      <li>از دست دادن خون</li>
-      <li>کمبود ویتامین‌ها</li>
+      <li>کمبود آهن (شایع‌ترین علت)</li>
+      <li>از دست دادن خون (مانند خونریزی یا قاعدگی شدید)</li>
+      <li>کمبود ویتامین B12 یا اسید فولیک</li>
+      <li>اختلال در تولید گلبول‌های قرمز</li>
     </ul>
   </div>
 
-  <p class="lang de"><a href="index.html">← Zurück</a></p>
-  <p class="lang fa" dir="rtl"><a href="index.html">← بازگشت</a></p>
+  <div class="section lang fa" dir="rtl">
+    <h3>علائم شایع</h3>
+    <ul>
+      <li>خستگی و ضعف عمومی</li>
+      <li>رنگ‌پریدگی پوست و مخاط‌ها</li>
+      <li>کاهش توان جسمی</li>
+      <li>سرگیجه و سردرد</li>
+      <li>تنگی نفس هنگام فعالیت</li>
+    </ul>
+  </div>
+
+  <!-- ZURÜCK -->
+  <p class="lang de">
+    <a class="back-link" href="index.html">← Zurück zur Startseite</a>
+  </p>
+
+  <p class="lang fa" dir="rtl">
+    <a class="back-link" href="index.html">← بازگشت به صفحه اصلی</a>
+  </p>
 
 </div>
 
@@ -60,8 +94,9 @@
 <div id="footer"></div>
 
 <!-- ===============================
-     EINZIGE GÜLTIGE SPRACHLOGIK
+     ZENTRALE SPRACHLOGIK (GLOBAL)
 ================================ -->
+
 <script>
 window.setLang = function (lang) {
   localStorage.setItem("lang", lang);
@@ -73,37 +108,42 @@ window.setLang = function (lang) {
   document.querySelectorAll(".lang." + lang).forEach(el => {
     el.style.display = "block";
   });
+
+  if (typeof setSearchLang === "function") {
+    setSearchLang(lang);
+  }
 };
 </script>
 
 <!-- ===============================
-     HEADER & FOOTER LADEN
+     HEADER / FOOTER LADEN + INIT
 ================================ -->
-<script>
-let headerReady = false;
-let footerReady = false;
 
-function initLang() {
-  if (headerReady && footerReady) {
+<script>
+let headerLoaded = false;
+let footerLoaded = false;
+
+function initLangIfReady() {
+  if (headerLoaded && footerLoaded) {
     const lang = localStorage.getItem("lang") || "de";
     window.setLang(lang);
   }
 }
 
 fetch("header.html")
-  .then(r => r.text())
-  .then(h => {
-    document.getElementById("header").innerHTML = h;
-    headerReady = true;
-    initLang();
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("header").innerHTML = html;
+    headerLoaded = true;
+    initLangIfReady();
   });
 
 fetch("footer.html")
-  .then(r => r.text())
-  .then(f => {
-    document.getElementById("footer").innerHTML = f;
-    footerReady = true;
-    initLang();
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
+    footerLoaded = true;
+    initLangIfReady();
   });
 </script>
 
