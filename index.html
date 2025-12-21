@@ -30,7 +30,6 @@
 
   <!-- SEARCH -->
   <div class="section">
-
     <h3 class="lang de">Suche</h3>
     <h3 class="lang fa" dir="rtl">جستجو</h3>
 
@@ -38,11 +37,18 @@
       type="text"
       id="search"
       class="search-input"
-      placeholder="Medizinischen Begriff eingeben"
+      placeholder=""
     >
 
     <div id="search-results"></div>
+  </div>
 
+  <!-- KATEGORIEN -->
+  <div class="section">
+    <h3 class="lang de">Kategorien</h3>
+    <h3 class="lang fa" dir="rtl">دسته‌بندی‌ها</h3>
+
+    <div id="kategorien-liste"></div>
   </div>
 
   <!-- A–Z LINK -->
@@ -56,7 +62,7 @@
 
   <!-- AUTOR -->
   <p class="lang de"><strong>von Shayan Daneshkhah</strong></p>
-  <p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانش‌خواه</strong></p>
+  <p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانش‌ خواه</strong></p>
 
 </div>
 
@@ -67,19 +73,33 @@
 <script src="begriffe.js"></script>
 <script src="search.js"></script>
 
-<!-- SPRACHLOGIK + HEADER/FOOTER -->
+<!-- LOGIK -->
 <script>
+function renderKategorien(lang) {
+  const container = document.getElementById("kategorien-liste");
+  if (!container || typeof kategorien === "undefined") return;
+
+  container.innerHTML = "";
+
+  Object.keys(kategorien).forEach(key => {
+    const name = kategorien[key][lang];
+    const p = document.createElement("p");
+    p.innerHTML = `<a href="kategorie.html?cat=${key}">${name}</a>`;
+    container.appendChild(p);
+  });
+}
+
 function setLang(lang) {
   localStorage.setItem("lang", lang);
 
   document.querySelectorAll('.lang').forEach(el => {
     el.style.display = 'none';
   });
-
   document.querySelectorAll('.' + lang).forEach(el => {
     el.style.display = 'block';
   });
 
+  // Suche
   if (typeof setSearchLang === "function") {
     setSearchLang(lang);
   }
@@ -91,6 +111,9 @@ function setLang(lang) {
         ? "اصطلاح پزشکی را وارد کنید"
         : "Medizinischen Begriff eingeben";
   }
+
+  // Kategorien
+  renderKategorien(lang);
 }
 
 let headerLoaded = false;
