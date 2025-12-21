@@ -98,35 +98,27 @@
 ================================ -->
 
 <script>
-window.setLang = function (lang) {
+/* ========= EINZIGE SPRACHFUNKTION ========= */
+window.setLang = function(lang) {
   localStorage.setItem("lang", lang);
 
-  document.querySelectorAll(".lang").forEach(el => {
-    el.style.display = "none";
+  document.querySelectorAll('.lang').forEach(el => {
+    el.style.display = 'none';
   });
 
-  document.querySelectorAll(".lang." + lang).forEach(el => {
-    el.style.display = "block";
+  document.querySelectorAll('.lang.' + lang).forEach(el => {
+    el.style.display = 'block';
   });
-
-  if (typeof setSearchLang === "function") {
-    setSearchLang(lang);
-  }
 };
-</script>
 
-<!-- ===============================
-     HEADER / FOOTER LADEN + INIT
-================================ -->
-
-<script>
+/* ========= HEADER / FOOTER LADEN ========= */
 let headerLoaded = false;
 let footerLoaded = false;
 
 function initLangIfReady() {
   if (headerLoaded && footerLoaded) {
-    const lang = localStorage.getItem("lang") || "de";
-    window.setLang(lang);
+    const savedLang = localStorage.getItem("lang") || "de";
+    window.setLang(savedLang);
   }
 }
 
