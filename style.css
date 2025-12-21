@@ -162,10 +162,19 @@ ul li {
   border-top: 1px solid #e6e6e6;
 }
 
-/* verhindert Safari-Doppelrand */
-body {
-  background-color: #f5f7fa;
+.footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  font-size: 0.9em;
+  color: #555;
 }
+
+.footer-inner [dir="rtl"] {
+  text-align: right;
+}
+
+
 /* =========================
    RESPONSIVE
 ========================= */
