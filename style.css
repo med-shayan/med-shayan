@@ -29,6 +29,27 @@ h1, h2, h3 {
 }
 
 /* =========================
+   HEADER LOGO
+========================= */
+
+.header-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.header-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.header-logo img {
+  width: 42px;        /* klein & elegant */
+  height: auto;
+  opacity: 0.9;
+}
+
+/* =========================
    HEADER
 ========================= */
 
