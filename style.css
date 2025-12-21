@@ -29,28 +29,7 @@ h1, h2, h3 {
 }
 
 /* =========================
-   HEADER LOGO
-========================= */
-
-.header-inner {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-}
-
-.header-logo {
-  display: flex;
-  justify-content: center;
-}
-
-.header-logo img {
-  width: 42px;        /* klein & elegant */
-  height: auto;
-  opacity: 0.9;
-}
-
-/* =========================
-   HEADER
+   HEADER (MIT LOGO IN DER MITTE)
 ========================= */
 
 .main-header {
@@ -58,13 +37,17 @@ h1, h2, h3 {
   border-bottom: 3px solid #0b5ed7;
 }
 
-.main-header .container {
-  display: flex;
-  justify-content: space-between;
+/* Grid statt Flex – wichtig für mittiges Logo */
+.main-header .header-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 14px 24px;
 }
 
+/* Navigation */
 .nav-area nav {
   display: flex;
   gap: 16px;
@@ -83,8 +66,27 @@ h1, h2, h3 {
 
 .nav-area a:hover {
   background: #0b5ed7;
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
+}
+
+/* Logo */
+.header-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.header-logo img {
+  width: 42px;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* Sprachumschalter */
+.lang-switch {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .lang-switch button {
@@ -125,26 +127,20 @@ h1, h2, h3 {
 }
 
 /* =========================
-   SEARCH (STARTSEITE) – FIX
+   SEARCH (STARTSEITE – iOS FIX)
 ========================= */
 
 .search-input {
   width: 100%;
   max-width: 600px;
-
-  /* 🔒 iOS-FIX */
   height: 52px;
   line-height: 52px;
   font-size: 16px;
-
   padding: 0 16px;
-
   border-radius: 10px;
   border: 2px solid #d0d7e2;
   outline: none;
-
   background-color: #ffffff;
-
   appearance: none;
   -webkit-appearance: none;
 }
@@ -152,7 +148,6 @@ h1, h2, h3 {
 .search-input::placeholder {
   color: #6b7280;
   font-size: 15px;
-  line-height: normal;
 }
 
 .search-input:focus {
@@ -160,7 +155,7 @@ h1, h2, h3 {
 }
 
 /* =========================
-   TEXT & LISTS
+   TEXT & LISTEN
 ========================= */
 
 p {
@@ -181,12 +176,14 @@ ul li {
 ========================= */
 
 .az-list p,
-#kategorie-liste p {
+#kategorie-liste p,
+#kategorien-liste p {
   margin: 10px 0;
 }
 
 .az-list a,
-#kategorie-liste a {
+#kategorie-liste a,
+#kategorien-liste a {
   display: inline-block;
   padding: 8px 12px;
   background: #eef3ff;
@@ -195,7 +192,8 @@ ul li {
 }
 
 .az-list a:hover,
-#kategorie-liste a:hover {
+#kategorie-liste a:hover,
+#kategorien-liste a:hover {
   background: #0b5ed7;
   color: #ffffff;
   text-decoration: none;
@@ -231,10 +229,10 @@ ul li {
   line-height: 1;
 }
 
-/* RTL korrekt */
 .back-link[dir="rtl"] {
   flex-direction: row-reverse;
 }
+
 /* =========================
    FOOTER
 ========================= */
@@ -258,18 +256,34 @@ ul li {
 }
 
 /* =========================
+   RTL GLOBAL
+========================= */
+
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* =========================
    RESPONSIVE
 ========================= */
 
 @media (max-width: 600px) {
-  .main-header .container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+  .main-header .header-inner {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
   }
 
-  .nav-area nav {
-    flex-wrap: wrap;
+  .nav-area {
+    justify-self: start;
+  }
+
+  .header-logo {
+    order: -1;
+  }
+
+  .lang-switch {
+    justify-content: flex-start;
   }
 
   .search-input {
