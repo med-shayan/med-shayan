@@ -149,10 +149,6 @@ ul li {
    FOOTER
 ========================= */
 
-/* =========================
-   FOOTER
-========================= */
-
 #footer {
   border-top: 1px solid #e6e6e6;
   background: #ffffff;
@@ -169,6 +165,13 @@ ul li {
 
 #footer [dir="rtl"] {
   text-align: right;
+}
+
+/* Footer-Inhalt sauber zentrieren */
+#footer .footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 24px;
 }
 
 /* =========================
