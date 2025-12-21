@@ -13,30 +13,48 @@
 <!-- CONTENT -->
 <div class="container">
 
+  <!-- TITEL -->
   <h1 class="lang de">Medizinisches Lexikon</h1>
   <h1 class="lang fa" dir="rtl">واژه‌نامه پزشکی</h1>
 
+  <!-- BESCHREIBUNG -->
   <p class="lang de">
-    Kurze und verständliche Erklärungen medizinischer Fachbegriffe.
+    Kurze und verständliche Erklärungen medizinischer Fachbegriffe
+    für medizinisch Interessierte, Schüler und Auszubildende.
   </p>
 
   <p class="lang fa" dir="rtl">
-    توضیحات ساده و قابل فهم اصطلاحات پزشکی.
+    توضیحات ساده و قابل فهم اصطلاحات پزشکی
+    برای علاقه‌مندان، دانش‌آموزان و دانشجویان رشته‌های پزشکی.
   </p>
 
+  <!-- SEARCH -->
   <div class="section">
-    <h3 class="lang de">Übersicht</h3>
-    <h3 class="lang fa" dir="rtl">فهرست</h3>
 
-    <p class="lang de">
-      <a href="az.html">A–Z Übersicht</a>
-    </p>
+    <h3 class="lang de">Suche</h3>
+    <h3 class="lang fa" dir="rtl">جستجو</h3>
 
-    <p class="lang fa" dir="rtl">
-      <a href="az.html">فهرست الفبایی</a>
-    </p>
+    <input
+      type="text"
+      id="search"
+      class="search-input"
+      placeholder="Medizinischen Begriff eingeben"
+    >
+
+    <div id="search-results"></div>
+
   </div>
 
+  <!-- A–Z LINK -->
+  <p class="lang de">
+    <a href="az.html">→ Zur A–Z Übersicht</a>
+  </p>
+
+  <p class="lang fa" dir="rtl">
+    <a href="az.html">→ فهرست الفبایی</a>
+  </p>
+
+  <!-- AUTOR -->
   <p class="lang de"><strong>von Shayan Daneshkhah</strong></p>
   <p class="lang fa" dir="rtl"><strong>تهیه‌شده توسط شایان دانش‌خواه</strong></p>
 
@@ -45,38 +63,60 @@
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- 🔒 ZENTRALE, STABILE SPRACH- & LADELOGIK -->
+<!-- DATEN -->
+<script src="begriffe.js"></script>
+<script src="search.js"></script>
+
+<!-- SPRACHLOGIK + HEADER/FOOTER -->
 <script>
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+
+  document.querySelectorAll('.lang').forEach(el => {
+    el.style.display = 'none';
+  });
+
+  document.querySelectorAll('.' + lang).forEach(el => {
+    el.style.display = 'block';
+  });
+
+  if (typeof setSearchLang === "function") {
+    setSearchLang(lang);
+  }
+
+  const searchInput = document.getElementById("search");
+  if (searchInput) {
+    searchInput.placeholder =
+      lang === "fa"
+        ? "اصطلاح پزشکی را وارد کنید"
+        : "Medizinischen Begriff eingeben";
+  }
+}
+
 let headerLoaded = false;
 let footerLoaded = false;
 
-function setLang(lang) {
-  localStorage.setItem("lang", lang);
-  document.querySelectorAll(".lang").forEach(el => el.style.display = "none");
-  document.querySelectorAll("." + lang).forEach(el => el.style.display = "block");
-}
-
-function initIfReady() {
+function initLangIfReady() {
   if (headerLoaded && footerLoaded) {
-    const lang = localStorage.getItem("lang") || "de";
-    setLang(lang);
+    const savedLang = localStorage.getItem("lang") || "de";
+    setLang(savedLang);
   }
 }
 
 fetch("header.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("header").innerHTML = html;
+  .then(r => r.text())
+  .then(h => {
+    document.getElementById("header").innerHTML = h;
     headerLoaded = true;
-    initIfReady();
+    initLangIfReady();
   });
 
 fetch("footer.html")
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById("footer").innerHTML = html;
+  .then(r => r.text())
+  .then(f => {
+    document.getElementById("footer").innerHTML = f;
     footerLoaded = true;
-    initIfReady();
+    initLangIfReady();
   });
 </script>
 
