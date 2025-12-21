@@ -151,8 +151,8 @@ ul li {
 
 #footer {
   background: #ffffff;
-  border-top: 2px solid #e6e6e6;
-  margin-top: 40px;
+  border-top: 1px solid #e6e6e6;
+  margin-top: 0px;
 }
 
 .footer-inner {
