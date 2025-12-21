@@ -98,18 +98,6 @@
 ================================ -->
 
 <script>
-/* ========= EINZIGE SPRACHFUNKTION ========= */
-window.setLang = function(lang) {
-  localStorage.setItem("lang", lang);
-
-  document.querySelectorAll('.lang').forEach(el => {
-    el.style.display = 'none';
-  });
-
-  document.querySelectorAll('.lang.' + lang).forEach(el => {
-    el.style.display = 'block';
-  });
-};
 
 /* ========= HEADER / FOOTER LADEN ========= */
 let headerLoaded = false;
