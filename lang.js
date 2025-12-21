@@ -1,7 +1,14 @@
-/* ========= GLOBALE SPRACHSTEUERUNG ========= */
-window.setLang = function (lang) {
-  localStorage.setItem("lang", lang);
+document.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("lang") || "de";
+  applyLang(savedLang);
+});
 
+function setLang(lang) {
+  localStorage.setItem("lang", lang);
+  applyLang(lang);
+}
+
+function applyLang(lang) {
   document.querySelectorAll(".lang").forEach(el => {
     el.style.display = "none";
   });
@@ -10,13 +17,17 @@ window.setLang = function (lang) {
     el.style.display = "block";
   });
 
+  // Suche informieren (falls vorhanden)
   if (typeof setSearchLang === "function") {
     setSearchLang(lang);
   }
-};
 
-/* ========= BEIM LADEN ========= */
-document.addEventListener("DOMContentLoaded", () => {
-  const savedLang = localStorage.getItem("lang") || "de";
-  window.setLang(savedLang);
-});
+  // Suchplatzhalter
+  const searchInput = document.getElementById("search");
+  if (searchInput) {
+    searchInput.placeholder =
+      lang === "fa"
+        ? "اصطلاح پزشکی را وارد کنید"
+        : "Medizinischen Begriff eingeben";
+  }
+}
