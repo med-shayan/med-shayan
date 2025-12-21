@@ -61,8 +61,8 @@
   <div class="section lang fa" dir="rtl">
     <h3>علت‌ها / پاتوژنز شایع</h3>
     <ul>
-      <li>کمبود آهن (شایع‌ترین علت)</li>
-      <li>از دست دادن خون (مانند خونریزی یا قاعدگی شدید)</li>
+      <li>کمبود آهن</li>
+      <li>از دست دادن خون</li>
       <li>کمبود ویتامین B12 یا اسید فولیک</li>
       <li>اختلال در تولید گلبول‌های قرمز</li>
     </ul>
@@ -71,25 +71,21 @@
   <div class="section lang fa" dir="rtl">
     <h3>علائم شایع</h3>
     <ul>
-      <li>خستگی و ضعف عمومی</li>
-      <li>رنگ‌پریدگی پوست و مخاط‌ها</li>
+      <li>خستگی و ضعف</li>
+      <li>رنگ‌پریدگی پوست</li>
       <li>کاهش توان جسمی</li>
-      <li>سرگیجه و سردرد</li>
-      <li>تنگی نفس هنگام فعالیت</li>
+      <li>سرگیجه</li>
+      <li>تنگی نفس</li>
     </ul>
   </div>
 
   <!-- ZURÜCK -->
   <p class="lang de">
-    <a href="index.html" class="back-link lang de">
-  <span class="arrow">←</span> Zurück zur Übersicht 
-    </a>
+    <a class="back-link" href="index.html">← Zurück zur Startseite</a>
   </p>
 
   <p class="lang fa" dir="rtl">
-    <a href="index.html" class="back-link lang fa" dir="rtl">
-  بازگشت به صفحه اصلی <span class="arrow">→</span> 
-    </a>
+    <a class="back-link" href="index.html">← بازگشت به صفحه اصلی</a>
   </p>
 
 </div>
@@ -97,41 +93,48 @@
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- ZENTRALE SPRACHLOGIK (STABIL) -->
+<!-- ================= SPRACHLOGIK (GLOBAL!) ================= -->
 <script>
-function setLang(lang) {
+window.setLang = function (lang) {
   localStorage.setItem("lang", lang);
-  document.querySelectorAll(".lang").forEach(el => el.style.display = "none");
-  document.querySelectorAll(".lang." + lang).forEach(el => el.style.display = "block");
+
+  document.querySelectorAll(".lang").forEach(el => {
+    el.style.display = "none";
+  });
+
+  document.querySelectorAll(".lang." + lang).forEach(el => {
+    el.style.display = "block";
+  });
+};
+</script>
+
+<!-- ================= HEADER / FOOTER LADEN ================= -->
+<script>
+let headerLoaded = false;
+let footerLoaded = false;
+
+function initLangIfReady() {
+  if (headerLoaded && footerLoaded) {
+    const lang = localStorage.getItem("lang") || "de";
+    window.setLang(lang);
+  }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  let headerLoaded = false;
-  let footerLoaded = false;
+fetch("header.html")
+  .then(r => r.text())
+  .then(h => {
+    document.getElementById("header").innerHTML = h;
+    headerLoaded = true;
+    initLangIfReady();
+  });
 
-  function initLangIfReady() {
-    if (headerLoaded && footerLoaded) {
-      const lang = localStorage.getItem("lang") || "de";
-      setLang(lang);
-    }
-  }
-
-  fetch("header.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("header").innerHTML = html;
-      headerLoaded = true;
-      initLangIfReady();
-    });
-
-  fetch("footer.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("footer").innerHTML = html;
-      footerLoaded = true;
-      initLangIfReady();
-    });
-});
+fetch("footer.html")
+  .then(r => r.text())
+  .then(f => {
+    document.getElementById("footer").innerHTML = f;
+    footerLoaded = true;
+    initLangIfReady();
+  });
 </script>
 
 </body>
