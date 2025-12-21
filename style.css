@@ -149,14 +149,13 @@ ul li {
    FOOTER
 ========================= */
 
-/* FOOTER – FIXED LAYOUT */
 #footer {
-  background: #fff;
+  background: #ffffff;
   border-top: 2px solid #e6e6e6;
   margin-top: 40px;
 }
 
-#footer .container {
+.footer-inner {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px 24px;
@@ -164,29 +163,9 @@ ul li {
   color: #555;
 }
 
-/* RTL-FIX für Footer */
-#footer [dir="rtl"] {
-  padding-right: 0;
-}
-
-/* =========================
-   RTL SUPPORT
-========================= */
-
-[dir="rtl"] {
-  direction: rtl;
+.footer-inner [dir="rtl"] {
   text-align: right;
 }
-
-[dir="rtl"] ul {
-  padding-right: 20px;
-  padding-left: 0;
-}
-
-[dir="rtl"] .section {
-  text-align: right;
-}
-
 /* =========================
    RESPONSIVE
 ========================= */
