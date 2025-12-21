@@ -149,20 +149,17 @@ ul li {
    FOOTER
 ========================= */
 
-/* ===== FOOTER FIX ===== */
+/* =========================
+   FOOTER
+========================= */
 
-/* verhindert zweite Linie über Footer */
-.container:last-of-type {
-  margin-bottom: 0;
-}
-
-/* Footer klar vom Content trennen */
 #footer {
-  margin-top: 0;
   border-top: 1px solid #e6e6e6;
+  background: #ffffff;
+  margin-top: 40px;
 }
 
-.footer-inner {
+#footer .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px 24px;
@@ -170,10 +167,9 @@ ul li {
   color: #555;
 }
 
-.footer-inner [dir="rtl"] {
+#footer [dir="rtl"] {
   text-align: right;
 }
-
 
 /* =========================
    RESPONSIVE
