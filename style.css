@@ -149,16 +149,24 @@ ul li {
    FOOTER
 ========================= */
 
+/* FOOTER – FIXED LAYOUT */
 #footer {
-  background: #ffffff;
+  background: #fff;
   border-top: 2px solid #e6e6e6;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 #footer .container {
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 20px 24px;
   font-size: 0.9em;
   color: #555;
+}
+
+/* RTL-FIX für Footer */
+#footer [dir="rtl"] {
+  padding-right: 0;
 }
 
 /* =========================
