@@ -61,8 +61,8 @@
   <div class="section lang fa" dir="rtl">
     <h3>علت‌ها / پاتوژنز شایع</h3>
     <ul>
-      <li>کمبود آهن</li>
-      <li>از دست دادن خون</li>
+      <li>کمبود آهن (شایع‌ترین علت)</li>
+      <li>از دست دادن خون (مانند خونریزی یا قاعدگی شدید)</li>
       <li>کمبود ویتامین B12 یا اسید فولیک</li>
       <li>اختلال در تولید گلبول‌های قرمز</li>
     </ul>
@@ -71,11 +71,11 @@
   <div class="section lang fa" dir="rtl">
     <h3>علائم شایع</h3>
     <ul>
-      <li>خستگی و ضعف</li>
-      <li>رنگ‌پریدگی پوست</li>
+      <li>خستگی و ضعف عمومی</li>
+      <li>رنگ‌پریدگی پوست و مخاط‌ها</li>
       <li>کاهش توان جسمی</li>
-      <li>سرگیجه</li>
-      <li>تنگی نفس</li>
+      <li>سرگیجه و سردرد</li>
+      <li>تنگی نفس هنگام فعالیت</li>
     </ul>
   </div>
 
@@ -93,7 +93,10 @@
 <!-- FOOTER -->
 <div id="footer"></div>
 
-<!-- ================= SPRACHLOGIK (GLOBAL!) ================= -->
+<!-- ===============================
+     ZENTRALE SPRACHLOGIK (GLOBAL)
+================================ -->
+
 <script>
 window.setLang = function (lang) {
   localStorage.setItem("lang", lang);
@@ -105,10 +108,17 @@ window.setLang = function (lang) {
   document.querySelectorAll(".lang." + lang).forEach(el => {
     el.style.display = "block";
   });
+
+  if (typeof setSearchLang === "function") {
+    setSearchLang(lang);
+  }
 };
 </script>
 
-<!-- ================= HEADER / FOOTER LADEN ================= -->
+<!-- ===============================
+     HEADER / FOOTER LADEN + INIT
+================================ -->
+
 <script>
 let headerLoaded = false;
 let footerLoaded = false;
@@ -121,17 +131,17 @@ function initLangIfReady() {
 }
 
 fetch("header.html")
-  .then(r => r.text())
-  .then(h => {
-    document.getElementById("header").innerHTML = h;
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("header").innerHTML = html;
     headerLoaded = true;
     initLangIfReady();
   });
 
 fetch("footer.html")
-  .then(r => r.text())
-  .then(f => {
-    document.getElementById("footer").innerHTML = f;
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer").innerHTML = html;
     footerLoaded = true;
     initLangIfReady();
   });
