@@ -78,23 +78,29 @@ function renderAZ(lang) {
   container.innerHTML = "";
 
   const sorted = [...begriffe].sort((a, b) => {
-    const nameA = lang === "fa"
-      ? normalizeFa(a.name_fa)
-      : a.name_de;
-
-    const nameB = lang === "fa"
-      ? normalizeFa(b.name_fa)
-      : b.name_de;
-
-    return nameA.localeCompare(
-      nameB,
-      lang === "fa" ? "fa" : "de"
-    );
+    const nameA = lang === "fa" ? normalizeFa(a.name_fa) : a.name_de;
+    const nameB = lang === "fa" ? normalizeFa(b.name_fa) : b.name_de;
+    return nameA.localeCompare(nameB, lang === "fa" ? "fa" : "de");
   });
+
+  let currentLetter = "";
 
   sorted.forEach(b => {
     const name = lang === "fa" ? b.name_fa : b.name_de;
     if (!name) return;
+
+    const firstLetter =
+      lang === "fa"
+        ? normalizeFa(name).charAt(0)
+        : name.charAt(0).toUpperCase();
+
+    if (firstLetter !== currentLetter) {
+      currentLetter = firstLetter;
+      const h2 = document.createElement("h2");
+      h2.textContent = firstLetter;
+      h2.className = "az-letter";
+      container.appendChild(h2);
+    }
 
     const p = document.createElement("p");
     p.innerHTML = `<a href="${b.file}">${name}</a>`;
@@ -102,7 +108,7 @@ function renderAZ(lang) {
   });
 }
 
-/* HEADER & FOOTER LADEN + SPRACHE INITIALISIEREN */
+/* HEADER & FOOTER */
 document.addEventListener("DOMContentLoaded", () => {
   let headerLoaded = false;
   let footerLoaded = false;
@@ -115,17 +121,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   fetch("header.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("header").innerHTML = html;
+    .then(r => r.text())
+    .then(h => {
+      document.getElementById("header").innerHTML = h;
       headerLoaded = true;
       initLangIfReady();
     });
 
   fetch("footer.html")
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("footer").innerHTML = html;
+    .then(r => r.text())
+    .then(f => {
+      document.getElementById("footer").innerHTML = f;
       footerLoaded = true;
       initLangIfReady();
     });
