@@ -31,14 +31,14 @@
 
   <!-- ZURÜCK -->
   <p class="lang de">
-    <a href="index.html" class="back-link lang de">
-  <span class="arrow">←</span> Zurück zur Übersicht 
+    <a href="index.html" class="back-link">
+      <span class="arrow">←</span> Zurück zur Übersicht
     </a>
   </p>
 
   <p class="lang fa" dir="rtl">
-    <a href="index.html" class="back-link lang fa" dir="rtl">
-  بازگشت به صفحه اصلی <span class="arrow">→</span> 
+    <a href="index.html" class="back-link" dir="rtl">
+      بازگشت به صفحه اصلی <span class="arrow">→</span>
     </a>
   </p>
 
@@ -50,7 +50,7 @@
 <!-- DATEN -->
 <script src="begriffe.js"></script>
 
-<!-- ZENTRALE LOGIK (STABIL & EINHEITLICH) -->
+<!-- LOGIK -->
 <script>
 function normalizeFa(text) {
   return text
@@ -78,44 +78,31 @@ function renderAZ(lang) {
   container.innerHTML = "";
 
   const sorted = [...begriffe].sort((a, b) => {
-    const nameA = lang === "fa" ? normalizeFa(a.name_fa) : a.name_de;
-    const nameB = lang === "fa" ? normalizeFa(b.name_fa) : b.name_de;
-    return nameA.localeCompare(nameB, lang === "fa" ? "fa" : "de");
+    const nameA = lang === "fa"
+      ? normalizeFa(a.name_fa)
+      : a.name_de;
+
+    const nameB = lang === "fa"
+      ? normalizeFa(b.name_fa)
+      : b.name_de;
+
+    return nameA.localeCompare(
+      nameB,
+      lang === "fa" ? "fa" : "de"
+    );
   });
 
-  if (lang === "de") {
-    let currentLetter = "";
+  sorted.forEach(b => {
+    const name = lang === "fa" ? b.name_fa : b.name_de;
+    if (!name) return;
 
-    sorted.forEach(b => {
-      const name = b.name_de;
-      if (!name) return;
-
-      const letter = name.charAt(0).toUpperCase();
-      if (letter !== currentLetter) {
-        currentLetter = letter;
-        const h2 = document.createElement("h2");
-        h2.textContent = letter;
-        container.appendChild(h2);
-      }
-
-      const p = document.createElement("p");
-      p.innerHTML = `<a href="${b.file}">${name}</a>`;
-      container.appendChild(p);
-    });
-  }
-
-  if (lang === "fa") {
-    sorted.forEach(b => {
-      const name = b.name_fa;
-      if (!name) return;
-
-      const p = document.createElement("p");
-      p.innerHTML = `<a href="${b.file}">${name}</a>`;
-      container.appendChild(p);
-    });
-  }
+    const p = document.createElement("p");
+    p.innerHTML = `<a href="${b.file}">${name}</a>`;
+    container.appendChild(p);
+  });
 }
 
+/* HEADER & FOOTER LADEN + SPRACHE INITIALISIEREN */
 document.addEventListener("DOMContentLoaded", () => {
   let headerLoaded = false;
   let footerLoaded = false;
