@@ -29,30 +29,6 @@ h1, h2, h3 {
 }
 
 /* =========================
-   SEARCH (STARTSEITE)
-========================= */
-
-.search-input {
-  width: 100%;
-  max-width: 600px;
-  padding: 12px 14px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 2px solid #d0d7e2;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.search-input::placeholder {
-  color: #6b7280;
-  font-size: 15px;
-}
-
-.search-input:focus {
-  border-color: #0b5ed7;
-}
-
-/* =========================
    HEADER
 ========================= */
 
@@ -121,10 +97,45 @@ h1, h2, h3 {
 
 .section {
   background: #ffffff;
-  padding: 20px 24px;
+  padding: 22px 24px;
   border-radius: 10px;
   margin-bottom: 25px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* =========================
+   SEARCH (STARTSEITE) – FIX
+========================= */
+
+.search-input {
+  width: 100%;
+  max-width: 600px;
+
+  /* 🔒 iOS-FIX */
+  height: 52px;
+  line-height: 52px;
+  font-size: 16px;
+
+  padding: 0 16px;
+
+  border-radius: 10px;
+  border: 2px solid #d0d7e2;
+  outline: none;
+
+  background-color: #ffffff;
+
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.search-input::placeholder {
+  color: #6b7280;
+  font-size: 15px;
+  line-height: normal;
+}
+
+.search-input:focus {
+  border-color: #0b5ed7;
 }
 
 /* =========================
@@ -150,15 +161,15 @@ ul li {
 
 .az-list p,
 #kategorie-liste p {
-  margin: 8px 0;
+  margin: 10px 0;
 }
 
 .az-list a,
 #kategorie-liste a {
   display: inline-block;
-  padding: 6px 10px;
+  padding: 8px 12px;
   background: #eef3ff;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 500;
 }
 
@@ -174,8 +185,8 @@ ul li {
 ========================= */
 
 #footer {
-  border-top: 1px solid #e6e6e6;
   background: #ffffff;
+  border-top: 1px solid #e6e6e6;
   margin-top: 40px;
 }
 
@@ -191,13 +202,6 @@ ul li {
   text-align: right;
 }
 
-/* Footer-Inhalt sauber zentrieren */
-#footer .footer-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px 24px;
-}
-
 /* =========================
    RESPONSIVE
 ========================= */
@@ -211,5 +215,11 @@ ul li {
 
   .nav-area nav {
     flex-wrap: wrap;
+  }
+
+  .search-input {
+    height: 56px;
+    line-height: 56px;
+    font-size: 16px;
   }
 }
