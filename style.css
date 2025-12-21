@@ -149,22 +149,22 @@ ul li {
    FOOTER
 ========================= */
 
+/* ===== FOOTER FIX ===== */
+
+/* verhindert zweite Linie über Footer */
+.container:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Footer klar vom Content trennen */
 #footer {
-  background: #ffffff;
+  margin-top: 0;
   border-top: 1px solid #e6e6e6;
-  margin-top: 0px;
 }
 
-.footer-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px 24px;
-  font-size: 0.9em;
-  color: #555;
-}
-
-.footer-inner [dir="rtl"] {
-  text-align: right;
+/* verhindert Safari-Doppelrand */
+body {
+  background-color: #f5f7fa;
 }
 /* =========================
    RESPONSIVE
