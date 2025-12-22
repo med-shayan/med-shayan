@@ -66,6 +66,9 @@
 
 <!-- LOGIK -->
 <script>
+/* =========================
+   KATEGORIEN
+========================= */
 function renderKategorien(lang) {
   const container = document.getElementById("kategorien-liste");
   if (!container || typeof kategorien === "undefined") return;
@@ -80,17 +83,20 @@ function renderKategorien(lang) {
   });
 }
 
+/* =========================
+   SPRACHE SETZEN
+========================= */
 function setLang(lang) {
   localStorage.setItem("lang", lang);
 
-  document.querySelectorAll('.lang').forEach(el => {
-    el.style.display = 'none';
-  });
-  document.querySelectorAll('.' + lang).forEach(el => {
-    el.style.display = 'block';
+  document.querySelectorAll(".lang").forEach(el => {
+    el.style.display = "none";
   });
 
-  // Suche
+  document.querySelectorAll(".lang." + lang).forEach(el => {
+    el.style.display = "block";
+  });
+
   if (typeof setSearchLang === "function") {
     setSearchLang(lang);
   }
@@ -103,10 +109,26 @@ function setLang(lang) {
         : "Medizinischen Begriff eingeben";
   }
 
-  // Kategorien
   renderKategorien(lang);
 }
 
+/* =========================
+   HEADER-BUTTONS AKTIVIEREN
+========================= */
+function initLangButtons() {
+  const buttons = document.querySelectorAll(".lang-switch button");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const lang = btn.getAttribute("data-lang");
+      setLang(lang);
+    });
+  });
+}
+
+/* =========================
+   HEADER & FOOTER LADEN
+========================= */
 let headerLoaded = false;
 let footerLoaded = false;
 
@@ -121,10 +143,10 @@ fetch("header.html")
   .then(r => r.text())
   .then(h => {
     document.getElementById("header").innerHTML = h;
+    initLangButtons(); // 🔑 DAS FEHLTE
     headerLoaded = true;
     initLangIfReady();
   });
-
 
 fetch("footer.html")
   .then(r => r.text())
