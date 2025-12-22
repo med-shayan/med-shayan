@@ -121,9 +121,25 @@ fetch("header.html")
   .then(r => r.text())
   .then(h => {
     document.getElementById("header").innerHTML = h;
+    initLangButtons();  
     headerLoaded = true;
     initLangIfReady();
   });
+
+<script>
+function initLangButtons() {
+  const buttons = document.querySelectorAll(".lang-switch button");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const lang = btn.getAttribute("data-lang");
+      if (typeof setLang === "function") {
+        setLang(lang);
+      }
+    });
+  });
+}
+</script>
 
 fetch("footer.html")
   .then(r => r.text())
