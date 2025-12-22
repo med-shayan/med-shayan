@@ -77,9 +77,9 @@ h1, h2, h3 {
 }
 
 .header-logo img {
-  width: 42px;
+  width: 72px;
   height: auto;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /* Sprachumschalter */
