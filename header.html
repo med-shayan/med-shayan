@@ -1,9 +1,8 @@
 <header class="main-header">
   <div class="container header-inner">
 
-    <!-- Navigation LINKS -->
+    <!-- Navigation -->
     <div class="nav-area">
-
       <nav class="lang de">
         <a href="index.html">Start</a>
         <a href="az.html">A–Z</a>
@@ -13,15 +12,14 @@
         <a href="index.html">خانه</a>
         <a href="az.html">الفبا</a>
       </nav>
-
     </div>
 
-    <!-- LOGO ABSOLUT ZENTRIERT -->
+    <!-- LOGO -->
     <div class="header-logo">
       <img src="images/logo.png" alt="Medizinisches Lexikon Logo">
     </div>
 
-    <!-- Sprachumschalter RECHTS -->
+    <!-- Sprachumschalter -->
     <div class="lang-switch">
       <button type="button" data-lang="de">Deutsch</button>
       <button type="button" data-lang="fa">فارسی</button>
@@ -29,3 +27,15 @@
 
   </div>
 </header>
+
+<!-- 🔒 WICHTIG: Sprach-Buttons aktivieren -->
+<script>
+document.querySelectorAll(".lang-switch button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const lang = btn.getAttribute("data-lang");
+    if (typeof setLang === "function") {
+      setLang(lang);
+    }
+  });
+});
+</script>
